@@ -1,0 +1,2858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Magic Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <!-- CSS files-->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="css/dash.css" rel="stylesheet">
+
+        <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="js/easypie/jquery.easy-pie-chart.css">
+        <!-- Google font -->
+        <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.canvasTextRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.canvasAxisTickRenderer.min.js"></script>
+        <!--Top Rep -->
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.barRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.pointLabels.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.dateAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.canvasTextRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.canvasAxisTickRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.highlighter.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/jqplot/jquery.jqplot.min.css" />
+        <script src="js/raphael/raphael.js"></script>
+        <script src="js/raphael/g.raphael.js"></script>
+        <script src="js/raphael/g.pie.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+        <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+        
+        <style>
+            .easy-pie-chart {
+                left: 33%;
+            }
+            .pielabel {
+                display: block;
+                text-align: center;
+                margin-top: 3px;
+            }
+            .notextdecor {
+                text-decoration:none;
+                color:#FFFFFF;
+                
+            }
+        </style>
+        <style>
+            .refreshImg {
+                margin-left: 1200px;
+                cursor: pointer;
+            }
+            #myTabs{
+                background-color: #49708A;
+            }
+            .center{
+                width: 150px;
+                height: 150px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -10%;
+                margin-top: -5%;
+            }
+            .chartholder {
+                width:790px;
+                height:500px;
+                margin: 5px;
+                font-family:'Asap', sans-serif;
+                
+            }
+            .loading_intro {
+                width:790px;
+                height:500px;
+                margin: 5px;
+            }
+            .sales_content {
+                width:790px;
+                height:500px;
+                margin: 5px;
+                font-family:'Asap', sans-serif;
+                
+            }
+            .lowerBox {
+                background-color: #DDDDDD;
+                height:100px;
+            }
+            .data_font {
+                font-family:'Asap', sans-serif;
+                font-size: 14px;
+                text-decoration:none;
+                color: #49708A;
+            }
+            /*.pieholder {
+                width:790px;
+                height:500px;
+            }*/
+
+            #chartholder {
+                width: 790px;
+                height: 500px;
+                margin: 5px;
+                font-family:'Asap', sans-serif;
+            }
+
+            #pieholder {
+                width: 790px;
+                height: 500px;
+                margin: 5px;
+                font-family:'Asap', sans-serif;
+            }
+            #bigBox {
+                /*position: absolute;
+                top: 50%;
+                margin-top: -16%;*/
+                top: 50%;
+                margin-top: -2.3%;
+            }
+            #tallBox {
+                height: 612px;
+                top: 50%;
+                margin-top: -2.35%;
+                
+            }
+            #footer {
+                
+                /*margin-top: 0%;*/
+            }
+            #revBox {
+                height: 75px;
+            }
+            #rowBox {
+                height: 580px;
+            }
+            #railBar {
+                margin-top: 2%;
+            }
+            #railBar2 {
+                background-color: #49708A;
+                margin-top: 4%;
+            }
+            #footCred {
+                
+                margin-top: -1.75%;
+            }
+            #lockDown {
+                /*position:initial;*/
+                /*resize: none;
+                overflow: auto;*/
+                /*margin-left: auto;
+                margin-right: auto;
+                width: max-content;
+                height: max-content;*/
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div id="lockDown">
+        <!-- Navbar -->
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="index.html">
+                        <!--<div class="icon-magic" style="color:#000"></div>Magic Dashboard</a>-->
+                        <img src="magicCrop.PNG" width="30" height="30"/>Sales Dashboard
+                    </a>
+                    <div class="refreshImg container">
+                        <a id="refresh_box" class="brand pull-right"> 
+
+                            <img class='pull-right' src='ArrowWSquareCrop.PNG' width='23' height='23' title="Refresh"/> 
+                        </a>
+                    </div> 
+                    <!--<div class="nav-collapse">
+                        
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- /Navbar -->
+        <!-- Main content -->
+        <div id="main-content">
+            <!-- Container -->
+            <div class="container">
+                <!-- Header boxes -->
+                <div class="box-container">
+                    </div>
+                <!-- /Header boxes -->
+                <div class="row" id="rowBox">
+                    <!-- Sidebar -->
+                    <div class="span3" id="tallBox">
+                        <h1 class="page-title">Product</h1>
+                        <select id="bookcombo" class="combobox input-large span3" name="normal">
+                            <!--<option value="LC13" selected="">LC13</option>-->
+                        </select>
+                        <h1 class="page-title">Sales Representative</h1>
+                        <select id="repcombo" class="combobox input-large span3" name="normal">
+                            <option value="ALL" selected="">All</option>
+                        </select>
+                        <h1 class="page-title">Today</h1>
+                        <ul id="sidebar" class="nav nav-tabs nav-stacked" data-tabs="tabs">
+                            
+                            <!--REMOVE THIS<li id="get_repcomments">
+                                <a href="#">
+                                    <i class="icon-comments-alt"></i>&nbsp;&nbsp;Rep Comments
+                                    <span class="label label-success pull-right">New!</span>
+                                    
+                                </a>
+                            </li>REMOVE-->
+                            <li>
+                                <a href="#">
+                                    <!--<i class="icon-bolt"></i>&nbsp;&nbsp;New Today-->
+                                    <img src="lightningCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;New Today
+                                    <span id="todays_new_rev" class="label label-success pull-right">$0</span>
+                                    <span id="todays_new_count" class="label label-success pull-right">0</span>
+                                    
+                                    
+                                    
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <!--<i class="icon-truck"></i>&nbsp;&nbsp;Renews Today-->
+                                    <img src="truckCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Renews Today
+                                    <span id="todays_renew_rev" class="label label-success pull-right">$0</span>
+                                    <span id="todays_renew_count" class="label label-success pull-right">0</span>
+                                    
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <!--<i class="icon-thumbs-up"></i>&nbsp;&nbsp;Increases Today-->
+                                    <img src="thumbsUpCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Increases Today
+                                    <span id="todays_incr_rev" class="label label-success pull-right">$0</span>
+                                    <span id="todays_incr_count" class="label label-success pull-right">0</span>                   
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <!--<i class="icon-thumbs-down"></i>&nbsp;&nbsp;Decreases Today-->
+                                    <img src="thumbsDownCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Decreases Today
+                                    <span id="todays_decr_rev" class="label label-success pull-right">$0</span>
+                                    <span id="todays_decr_count" class="label label-success pull-right">0</span>
+                                    
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="#">
+                                    <div class="control-group" id="revBox">
+                                        <div class="input-prepend input-append">
+                                            <label>Update Revenue Target</label>
+                                            <span class="add-on">$</span>
+                                            <input class="span2" id="revTarget" placeholder="0" size="25" type="text">
+                                            <!-- Button -->
+                                            <div class="controls">
+                                                <button id="updateRevTarget" class="btn btn-success" style="margin: 5px;" >Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /Sidebar -->
+                    <!-- Content -->
+                    <div class="span9">
+                        <!--<h1 class="page-title">Dashboard Overview</h1>-->
+                        
+                        <div class="widget" id="bigBox">
+                            <div class="widget-header">
+                                <div class="tabbable" >
+                                 <ul class="nav nav-tabs" id="myTabs">
+                                      <!--<li class="active"><a class="atab" href="#sales_overview" data-toggle="tab">Sales Panel Overview</a></li>
+                                      <li><a class="btab" href="#total_sales" data-toggle="tab">Top Headings</a></li>
+                                      <li><a class="ctab" href="#contr_by_date" data-toggle="tab">Contracts By Week</a></li>
+                                      <li><a class="dtab" href="#sales_rep_prog" data-toggle="tab">Sales Rep Progress</a></li>-->
+                                      
+                                      
+                                      <!--<li class="active"><a class="atab" href="#sales_overview" data-toggle="tab"><p><font color="white">Sales Panel Overview</font></p></a></li>-->
+                                      <li class="active"><a class="atab notextdecor" href="#sales_overview" data-toggle="tab">Sales Panel Overview</a></li>
+                                      <li><a class="btab notextdecor" href="#sales_rep_prog" data-toggle="tab">Sales Rep Progress</a></li>
+                                      <li><a class="ctab notextdecor" href="#total_sales" data-toggle="tab">Top Headings</a></li>
+                                      <li><a class="dtab notextdecor" href="#contr_by_date" data-toggle="tab">Contracts By Week</a></li>
+                                      
+                                      <!--<li><a href ="#other_chart" data-toggle="tab">Other Chart</a></li>-->
+                                  </ul>
+                                <!--<h3>
+                                    <i class="icon-signal"></i>&nbsp;&nbsp;Charts</h3>-->   
+                                  <div class="tab-content">
+                                      <!--<div class="tab-pane active" id="sales_overview"></div>
+                                      <div class="tab-pane" id="total_sales"></div>
+                                      <div class="tab-pane" id="contr_by_date"></div>
+                                      <div class="tab-pane" id="sales_rep_prog"></div>-->
+                                      
+                                      <div class="tab-pane active" id="sales_overview"></div>
+                                      <div class="tab-pane" id="sales_rep_prog"></div>
+                                      <div class="tab-pane" id="total_sales"></div>
+                                      <div class="tab-pane" id="contr_by_date"></div>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+                            
+                            <div class="widget-content">
+                                <!-- <iframe id="frame" src="topheadings.html" width="390" height="550" frameborder="0" allowTransparency="true"></iframe>
+                                <iframe id="frame" src="topheadings2.html" width="390" height="550" frameborder="0" allowTransparency="true"></iframe> -->
+                                <!--<iframe id="repframe" src="topreps.html" width="835" height="550" frameborder="0" allowTransparency="true"></iframe>-->
+                                <div class="box-container">
+                                    <div class="box-holder" >
+                                        <!--<div class="loading_intro" id="loading"><div vertical-align="center" ><img src="loading81.gif" width="100" height="100"/></div></div>-->
+                                        <div class="loading_intro" id="loading"><div class="center" ><img src="ajax-loader(2).gif" /></div></div>
+                                        <div class="chartholder" id="repframe"></div>
+                                        
+                                        <!--Pie Stuff -->
+                                        <div class="sales_content" id="overview_stuff">
+                                            <!--<h1 class="page-title">Sales Panel Overview</h1>-->
+                                     <!---->  <div class="box-container">
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="news">
+                                                                <span id="new_count">0</span>
+                                                                <span id="new_rev">$0</span>New</div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="renew">
+                                                                <span id="renew_count">0</span>
+                                                                <span id="renew_rev">$0</span>Renew</div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="increase">
+                                                                <span id="incr_count">0</span>
+                                                                <span id="incr_rev">$0</span>Increase</div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="decrease">
+                                                                <span id="decr_count">0</span>
+                                                                <span id="decr_rev">$0</span>Decrease</div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <div class="widget-header">
+                                                    <h3>
+                                                        <img src="tagCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Quick Views</h3>
+                                                        <!--<i class="icon-tag"></i>&nbsp;&nbsp;Quick Views</h3>-->
+                                                </div>
+                                                <div class="widget-content">
+                                                    <div class="box-container">
+                                                        <div class="box-holder">
+                                                            <div class="pie-contract-completed" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Completed Contracts</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-revenue-target" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Revenue Renewed</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-target" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Revenue Target</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-sales-canvas" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Canvas Days</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                           <!--STRAR NEW BOX HERE-->
+                                            <h1 class="page-title">
+                                                <img src="dudeCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Quick Totals</h1>
+                                            <div class="box-container">
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box lowerBox">
+                                                            <div id="news2">
+                                                                <div class="data_font" id="new_count2">Total Contracts</div>
+                                                                <div id="total_contracts">0</div>
+                                                                <div class="data_font">Not Worked</div>
+                                                                <div id="num_not_worked">0</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box lowerBox">
+                                                            <div id="renew2">
+                                                                <div class="data_font" id="renew_count2">Total Rev Amount</div>
+                                                                <div id="total_renewed">$0</div>
+                                                                <div class="data_font">Rev Worked</div>
+                                                                <div id="rev_not_worked">$0</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box lowerBox">
+                                                            <div id="increase2">
+                                                                <div class="data_font" id="incr_count2" >Projected</div>
+                                                                <div id="revenue_projected">$0</div>
+                                                                <div class="data_font" id="incr_rev2">Actual</div>
+                                                                <div id="actual_revenue">$0</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box lowerBox">
+                                                            <div id="decrease2">
+                                                                <div class="data_font" id="decr_count2">Start Date</div>
+                                                                <div id="canvas_start_date">&nbsp;</div>
+                                                                <div class="data_font" id="decr_rev2">End Date</div>
+                                                                <div id="canvas_end_date">&nbsp;</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <div id="railBar"><hr></div>
+                    <p class="pull-right" id="footCred">Powered by Yellow Magic &copy; 2013</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/easypie/jquery.easy-pie-chart.js"></script>
+        <script>
+           //window['BOOK'] = 'hello world book';
+            
+            $('.pie-contract-completed').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3da0ea'
+            });
+            $('.pie-revenue-target').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3dea44'
+            });
+            $('.pie-target').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#d71de6'
+            });
+            $('.pie-sales-canvas').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#14d9c3'
+            });
+        </script>
+        <script>
+/******************************************************************************/           
+////////////////////////////////GLOBAL VARIABLES////////////////////////////////
+/******************************************************************************/
+            SERVER = '';
+            BOOK = '';
+            TEMP_BOOK = '';
+            TEMP_INDEX = 0;
+
+            REP = "ALL";
+            
+            REV_TARGET = [];
+            REVGOAL = 0;
+            
+            CLOSE_DATE_ARR = [];
+            CLOSE_DATE = 0;
+            
+            START_DATE_ARR = [];
+            START_DATE = 0;
+            DEFAULT_DATE = "1899, 12, 30";
+            
+            NOT_DONE = true;
+
+            THE_DATE = ""; 
+            
+            GLOBAL_INDEX = 0;
+            
+            //Variables used fo the lower display boxes on overview
+            TOTAL_CONTRACTS_BOX = 0;
+            TOTAL_CONTRACTS_NOTWORKED_BOX = 0;
+            TOTAL_RENEWED_BOX = 0;
+            NOT_RENEWED_AMOUNT_BOX = 0;
+            REVENUE_PROJECTED_BOX = 0;
+            ACTUAL_REVENUE_BOX = 0;
+            CANVAS_START_DATE_BOX = 0;
+            CANVAS_END_DATE_BOX = 0;
+
+            SWITCH_STATE = 0;
+            
+            RENEW_DISCOUNTS = [];
+            NET_RENEW_AMOUNT = [];
+            CONTRACTS_RENEW = [];
+
+            CONTRACTS_NOTWORKED = [];
+            REV_NOTWORKED = [];
+
+            NEW_COUNT = 0.0;
+            NET_REV_NEW = 0.0;
+            NEW_DISCOUNTS = 0.0;
+            
+            TODAYS_NEW_COUNT = 0.0;
+            TODAYS_INCR_COUNT = 0.0;
+            TODAYS_DECR_COUNT = 0.0;
+            TODAYS_RENEW_COUNT = 0.0;
+
+            TODAYS_NEW_REV = 0.0;
+            TODAYS_INCR_REV = 0.0;
+            TODAYS_DECR_REV = 0.0;
+            TODAYS_RENEW_REV = 0.0;
+
+            INCR_DISCOUNTS = [];
+            NET_INCR_AMOUNT = [];
+            CONTRACTS_INCR = [];
+
+            DECR_DISCOUNTS = [];
+            NET_DECR_AMOUNT = [];
+            CONTRACTS_DECR = [];
+
+            REP_NAME = [];
+            REP_CODE = [];
+            REP_SOLD = [];
+            BOOKS = [];
+            TIME = 200;
+            
+/******************************************************************************/           
+////////////////////////////////GLOBAL VARIABLES////////////////////////////////
+/******************************************************************************/
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+            
+/******************************************************************************/           
+////////////////////////////START REFRESH FUNCTIONS/////////////////////////////
+/******************************************************************************/
+            
+            //Controls the time to auto-refresh
+            self.setInterval(function()
+            { 
+                dataRefresh();
+            },900000);
+
+            //calls refresh when tabs are clicked
+            $(".atab").click(function() 
+            { 
+                SWITCH_STATE = 0;
+                dataRefresh();
+            });
+            $(".btab").click(function() 
+            { 
+                SWITCH_STATE = 1;
+                dataRefresh();
+            });
+            $(".ctab").click(function() 
+            { 
+                SWITCH_STATE = 2;
+                dataRefresh();
+            });
+            $(".dtab").click(function() 
+            { 
+                SWITCH_STATE = 3;
+                dataRefresh();
+            });
+            
+            //refresh button
+            $('#refresh_box').click(function(e) {
+                e.preventDefault();
+                
+                dataRefresh();
+            });
+
+            $("#bookcombo").change(function() {
+                BOOK = $("#bookcombo").val();
+                
+                var bi = parseInt($("#bookcombo").prop("selectedIndex"));
+                GLOBAL_INDEX = bi;
+                REVGOAL = REV_TARGET[bi];
+
+                $('#revTarget').val(REV_TARGET[GLOBAL_INDEX]);
+                REP = "ALL";
+                $('#repcombo').empty();
+                $('#repcombo').append($('<option/>').attr("value", "ALL").text("All"));
+                call_Reps(BOOK);
+                //dataRefresh();
+               
+            });
+            
+            $("#repcombo").change(function() 
+            {
+                    REP = $("#repcombo").val();
+                    dataRefresh();
+            });
+            
+            $("#updateRevTarget").click(function() 
+            {
+                REVGOAL = $('#revTarget').val();
+                window.status = "CLICKED";
+                update_RevTarget(REVGOAL);
+                dataRefresh();
+            });
+
+            function update_RevTarget(target) 
+            {
+                //MY_BOOK = $("#bookcombo").val();
+
+                //this should update the database with the new value
+                var url = "http://" + SERVER + "/" +
+                        "update book set totrevgoal = " + target + " WHERE " +
+                        "BOOK = " + "'" + BOOK + "'";
+               
+ 
+                $.ajax({url: url, type: "GET"});
+                
+                //var bi = parseInt($("#bookcombo").prop("selectedIndex"));
+                
+                REV_TARGET[GLOBAL_INDEX] = target;
+                dataRefresh();
+                               
+            }
+
+            function dataRefresh() 
+            {
+                $(".loading_intro").show();
+                $("#pieholder").html("");
+                $(".chartholder").html("");
+                    
+                RENEW_DISCOUNTS = [];
+                NET_RENEW_AMOUNT = [];
+                CONTRACTS_RENEW = [];
+         
+                CONTRACTS_NOTWORKED = [];
+                REV_NOTWORKED = [];
+
+                NEW_COUNT = 0.0;
+                NET_REV_NEW = 0.0;
+                NEW_DISCOUNTS = 0.0;
+
+                TODAYS_NEW_COUNT = 0.0;
+                TODAYS_INCR_COUNT = 0.0;
+                TODAYS_DECR_COUNT = 0.0;
+                TODAYS_RENEW_COUNT = 0.0;
+
+                TODAYS_NEW_REV = 0.0;
+                TODAYS_INCR_REV = 0.0;
+                TODAYS_DECR_REV = 0.0;
+                TODAYS_RENEW_REV = 0.0;
+
+                INCR_DISCOUNTS = [];
+                NET_INCR_AMOUNT = [];
+                CONTRACTS_INCR = [];
+
+                DECR_DISCOUNTS = [];
+                NET_DECR_AMOUNT = [];
+                CONTRACTS_DECR = [];
+
+                REP_NAME = [];
+                REP_CODE = [];
+                REP_SOLD = [];
+                BOOKS = [];
+                
+                //topheadings variables
+                CLASS_DESCR = [];
+                TOTAL_VALUE = [];
+                
+                //Variables used fo the lower display boxes on overview
+                TOTAL_CONTRACTS_BOX = 0;
+                TOTAL_CONTRACTS_NOTWORKED_BOX = 0;
+                TOTAL_RENEWED_BOX = 0;
+                NOT_RENEWED_AMOUNT_BOX = 0;
+                REVENUE_PROJECTED_BOX = 0;
+                ACTUAL_REVENUE_BOX = 0;
+                       
+                call_TodaysNewContracts(BOOK);
+                call_TodaysContractsSold(BOOK);
+                call_TodaysContractsDecr(BOOK);  
+                call_TodaysContractsIncr(BOOK); 
+                call_NewContracts(BOOK);
+                //call_ContractsSold(BOOK);
+                //call_OverView(book);
+                
+                /*setTimeout(function() {
+                    call_TodaysNewContracts(BOOK);
+                }, TIME);
+                setTimeout(function() {
+                    call_TodaysContractsSold(BOOK);
+                }, TIME);
+                setTimeout(function() {
+                    call_TodaysContractsDecr(BOOK);   
+                }, TIME);
+                setTimeout(function() {
+                    call_TodaysContractsIncr(BOOK);                 
+                }, TIME);
+                setTimeout(function() { 
+                    call_ContractsSold(BOOK);
+                }, TIME);*/
+                
+                /*setTimeout(function() { 
+                    call_ContractsSold(BOOK);
+                }, TIME);
+                setTimeout(function() {
+                    call_NewContracts(BOOK);                  
+                }, TIME);
+                setTimeout(function() {
+                    call_ContractsDecr(BOOK);                  
+                }, TIME);
+                setTimeout(function() {
+                    call_ContractsIncr(BOOK);                 
+                }, TIME);
+                setTimeout(function() {
+                    call_TodaysNewContracts(BOOK);
+                }, TIME);
+                setTimeout(function() {
+                    call_TodaysContractsSold(BOOK);
+                }, TIME);
+                setTimeout(function() {
+                    call_TodaysContractsDecr(BOOK);   
+                }, TIME);
+                setTimeout(function() {
+                    call_TodaysContractsIncr(BOOK);                 
+                }, TIME);
+                setTimeout(function() {
+                    call_ContractsNotWorked(BOOK);                
+                }, TIME);
+                setTimeout(function() {
+                    lower_Overview_Boxes(BOOK);                 
+                }, TIME);*/
+                
+                //switch statement controlls method calls for the tabs
+                switch(SWITCH_STATE)
+                {
+                    case 0: {//overview calls
+                            $(".loading_intro").hide();
+                            $("#overview_stuff").show();
+                            $("#repframe").hide();
+       
+                             break;}
+                    
+                    case 1: {//topreps
+                             $(".loading_intro").hide();
+                             $("#overview_stuff").hide();
+                             $("#repframe").show();
+                             callJSONP_TopReps(BOOK);
+
+                             break;}
+                    case 2: {//topheadings
+                             $(".loading_intro").show();
+                             //$(".loading_intro").hide();
+                             $("#overview_stuff").hide();
+                             $("#repframe").hide();
+                             //$("#repframe").show();
+                             
+                             callJSONP_TopHeadings(BOOK);
+                             break;}
+                         
+                    case 3: {//contracts by week
+                             $(".loading_intro").hide();
+                             $("#overview_stuff").hide();
+                             $("#repframe").show();
+                            
+                             callJSONP_Kdate(BOOK);
+                             break;}
+                    
+                    default:{//show loading
+                             $(".loading_intro").show();
+                             $("#overview_stuff").hide();
+                             $("#repframe").hide();
+                             call_Loading();
+
+                             break;}
+                }
+            }
+
+            function call_Reps(book)
+            {
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "CONTRACT.SALE as REPCODE, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as NET_SOLD_AMOUNT, " +
+                        "EMPLOYEE.LAST AS REPLASTNAME,  " +
+                        "EMPLOYEE.FIRST AS REPFIRSTNAME  " +
+                        "FROM CONTRACT, BOOK, EMPLOYEE   " +
+                        "WHERE " +
+                        "CONTRACT.BOOK = BOOK.BOOK " +
+                        "AND EMPLOYEE.SALE = CONTRACT.SALE " +
+                        "AND CONTRACT.KAMOUNT>0 " +
+                        "AND (!empty(CONTRACT.AA_ACCT) " +
+                        "AND !empty(CONTRACT.SUBDATE ) " +
+                        "AND EMPLOYEE.ACTIVE <> 'N') " +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "ORDER BY " +
+                        "NET_SOLD_AMOUNT DESC, " +
+                        "CONTRACT.BOOK," +
+                        "CONTRACT.SALE " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK," +
+                        "CONTRACT.SALE," +
+                        "EMPLOYEE.LAST," +
+                        "EMPLOYEE.FIRST";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_Reps");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            
+            function jsonp_Reps(response)
+            {
+                try
+                {
+                    //console.log(response);
+                    REP_NAME = [];
+                    REP_CODE = [];
+
+                    $('#repcombo').empty();
+                    $('#repcombo').append($('<option/>').attr("value", "ALL").text("All"));
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        REP_NAME.push(dataEntry.replastname + " - " + dataEntry.repcode);
+                        REP_CODE.push(dataEntry.repcode);
+                        $('#repcombo').append($('<option/>').attr("value", dataEntry.repcode).text(dataEntry.repfirstname + " " + dataEntry.replastname));
+                    }
+                    dataEntry = [];
+                    
+                    //call next function here
+                    //on_Loading_Data(BOOK);
+                    dataRefresh();
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('index3Something bad happened: ' + an_exception);
+                }
+            }
+/******************************************************************************/           
+////////////////////////////END REFRESH FUNCTIONS///////////////////////////////
+/******************************************************************************/
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/******************************************************************************/
+////////////////////////////START LOADING FUNCTIONS/////////////////////////////
+/******************************************************************************/
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Initial loading of the dashboard. 
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            window.addEventListener("load", function(e) 
+            {
+                window.status = "START_LOADING";
+                if(SERVER === '')
+                {
+                    SERVER = "ERROR!!!!";
+                }
+                $(".loading_intro").hide();
+                $("#overview_stuff").show();
+                $("#repframe").hide();
+                
+                setTimeout(function() { 
+                    call_Books();
+                }, TIME);
+                
+            });
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Call for the initial loading of Books. 
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_Books()
+            {
+                var today = new Date();
+                var highDate = new Date();
+                var lowDate = new Date();
+                
+                highDate.setDate( today.getDate() + 730);
+                lowDate.setDate( today.getDate() - 730);
+                
+                var dateStr = lowDate.getFullYear() + ", 01, 01";
+
+                var url = "http://" + SERVER + "/" +
+                        
+                        "select BOOK.book, BOOK.totrevgoal, BOOK.canstart, BOOK.canend "+
+                        "from book where BOOK.date > DATE("+ dateStr +") order by book";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_Books");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Response for the initial loading of Books. 
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_Books(response)
+            {
+                try
+                {
+                    BOOKS = [];
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        var dataEntry = response.result[i];
+                        BOOKS.push(dataEntry.book);
+
+                        if(dataEntry.book === TEMP_BOOK)
+                        {
+                            window.status = "found a match";
+                            TEMP_INDEX = i;
+                        }
+                        
+                        REV_TARGET.push(dataEntry.totrevgoal);
+                        CLOSE_DATE_ARR.push(dataEntry.canend);
+                        START_DATE_ARR.push(dataEntry.canstart);
+
+                        $('#bookcombo').append($('<option/>').attr("value", dataEntry.book).text(dataEntry.book));
+                    }
+
+                    dataEntry = [];
+
+                    GLOBAL_INDEX = TEMP_INDEX;
+                    document.getElementById("bookcombo").selectedIndex = TEMP_INDEX;
+                    
+                    BOOK = BOOKS[TEMP_INDEX];
+                    
+                    $('#revTarget').val(REV_TARGET[GLOBAL_INDEX]);
+                    
+                    call_Load_Reps(BOOK); 
+                }
+                catch(an_exception)
+                {
+                    alert('index2Something bad happened: ' + an_exception);
+                }
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Call for the initial loading of reps. 
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_Load_Reps(book)
+            {
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "CONTRACT.SALE as REPCODE, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as NET_SOLD_AMOUNT, " +
+                        "EMPLOYEE.LAST AS REPLASTNAME,  " +
+                        "EMPLOYEE.FIRST AS REPFIRSTNAME  " +
+                        "FROM CONTRACT, BOOK, EMPLOYEE   " +
+                        "WHERE " +
+                        "CONTRACT.BOOK = BOOK.BOOK " +
+                        "AND EMPLOYEE.SALE = CONTRACT.SALE " +
+                        "AND CONTRACT.KAMOUNT>0 " +
+                        "AND (!empty(CONTRACT.AA_ACCT) " +
+                        "AND !empty(CONTRACT.SUBDATE ) " +
+                        "AND EMPLOYEE.ACTIVE <> 'N') " +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "ORDER BY " +
+                        "NET_SOLD_AMOUNT DESC, " +
+                        "CONTRACT.BOOK," +
+                        "CONTRACT.SALE " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK," +
+                        "CONTRACT.SALE," +
+                        "EMPLOYEE.LAST," +
+                        "EMPLOYEE.FIRST";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_Load_Reps");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Response to the initial loading of reps. 
+             * Calls on_Loading_Data()
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_Load_Reps(response)
+            {
+                try
+                {
+                    //console.log(response);
+                    REP_NAME = [];
+                    REP_CODE = [];
+
+                    $('#repcombo').empty();
+                    $('#repcombo').append($('<option/>').attr("value", "ALL").text("All"));
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        REP_NAME.push(dataEntry.replastname + " - " + dataEntry.repcode);
+                        REP_CODE.push(dataEntry.repcode);
+                        $('#repcombo').append($('<option/>').attr("value", dataEntry.repcode).text(dataEntry.repfirstname + " " + dataEntry.replastname));
+                    }
+                    dataEntry = [];
+                    
+                    on_Loading_Data(BOOK);
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('index3Something bad happened: ' + an_exception);
+                }
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Controlls the function calls during loading so that things happen 
+             * in the correct order. Else, things get mixed up.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function on_Loading_Data(book)
+            {
+                    //Todays functions
+                    setTimeout(function() {
+                        call_TodaysNewContracts(book);
+                    }, TIME);
+                    setTimeout(function() {
+                        call_TodaysContractsSold(book);
+                    }, TIME);
+                    setTimeout(function() {
+                        call_TodaysContractsDecr(book);   
+                    }, TIME);
+                    setTimeout(function() {
+                        call_TodaysContractsIncr(book);                 
+                    }, TIME);
+                    
+                    //OverView
+                    call_OverView(book);
+                    
+                     
+            }
+/******************************************************************************/           
+////////////////////////////END LOADING FUNCTIONS///////////////////////////////           
+/******************************************************************************/            
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/******************************************************************************/           
+//////////////////////////START SIDEBAR FUNCTIONS///////////////////////////////
+/******************************************************************************/
+ 
+ 
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Todays New Contracts
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_TodaysNewContracts(book)
+            {
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select  " + 
+                        "CONTRACT.BOOK,  " + 
+                        "COUNT(CONTRACT.KAMOUNT) as TODAYS_NEW_COUNT,  " + 
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as TODAYS_NEW_REV  " +
+                        "FROM CONTRACT   " + 
+                        "WHERE  " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND CONTRACT.ROLLKAMT=0 " +
+                        "AND !empty(CONTRACT.AA_ACCT) " + userep +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "AND CONTRACT.KDATE =  " + 
+                        "DATE(" + THE_DATE + ") " + 
+                        "GROUP BY CONTRACT.BOOK";
+                
+                        //"AND CONTRACT.BOOK='" + book + "' " +
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_TodaysNewContracts");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Todays New Contracts, jsonp
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_TodaysNewContracts(response)
+            {
+                try
+                {
+                    TODAYS_NEW_COUNT = 0;
+                    TODAYS_NEW_REV = 0.0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        TODAYS_NEW_COUNT = dataEntry.todays_new_count;
+                        TODAYS_NEW_REV = dataEntry.todays_new_rev;
+
+                    }
+                    dataEntry = [];
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('9Something bad happened: ' + an_exception);
+                }
+
+ 
+                $("#todays_new_count").html(TODAYS_NEW_COUNT);
+                $("#todays_new_rev").html("$" + TODAYS_NEW_REV );
+            }
+ 
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Contracts Renewed Today
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_TodaysContractsSold(book)
+            {window.status = "AM I WORKING????????";
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select CONTRACT.BOOK, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) " +
+                        "as TODAYS_RENEW_AMOUNT, " +
+                        "COUNT(CONTRACT.KAMOUNT) as TODAYS_CONTRACTS_RENEW " +
+                        "FROM CONTRACT " +
+                        "WHERE " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND !empty(CONTRACT.AA_ACCT) " + userep +
+                        "AND CONTRACT.ROLLKAMT>0 " +
+                        "AND CONTRACT.KDATE" +
+                        " = DATE(" + THE_DATE + ") " +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "GROUP BY CONTRACT.BOOK";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_TodaysContractsSold");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Contracts Renewed Today
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_TodaysContractsSold(response)
+            {window.status = "AM I WORKING..... Yeeeeessss!";
+                try
+                {
+                    //console.log(response);
+                    TODAYS_RENEW_DISCOUNTS = 0.0;
+                    TODAYS_RENEW_AMOUNT = 0.0;
+                    TODAYS_CONTRACTS_RENEW = 0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        var dataEntry = response.result[i];
+window.status = "renewal:" + dataEntry.todays_contracts_renew;
+                        TODAYS_RENEW_DISCOUNTS = dataEntry.todays_renew_discounts;
+                        TODAYS_RENEW_AMOUNT = dataEntry.todays_renew_amount;
+                        TODAYS_CONTRACTS_RENEW = dataEntry.todays_contracts_renew;
+                    }
+                    dataEntry = [];
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('10Something bad happened: ' + an_exception);
+                }
+
+                $("#todays_renew_count").html(TODAYS_CONTRACTS_RENEW);
+                $("#todays_renew_rev").html("$" + TODAYS_RENEW_AMOUNT);
+            }
+ 
+ 
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Todays Contracts Decremented
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_TodaysContractsDecr(book)
+            {
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as TODAYS_DECR_AMOUNT, " +
+                        "SUM(CONTRACT.DISCOUNT) as TODAYS_DECR_DISCOUNTS, " +
+                        "COUNT(CONTRACT.KAMOUNT) as TODAYS_CONTRACTS_DECR " +
+                        "FROM CONTRACT  " +
+                        "WHERE " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND CONTRACT.KAMOUNT<CONTRACT.ROLLKAMT " +
+                        "AND !empty(CONTRACT.AA_ACCT) " +
+                        "AND CONTRACT.ROLLKAMT>0 " + userep +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "AND CONTRACT.KDATE =  " + 
+                        "DATE(" + THE_DATE + ") " + 
+                        "GROUP BY " +
+                        "CONTRACT.BOOK";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_TodaysContractsDecr");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Todays Contracts Decremented, jsonp
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_TodaysContractsDecr(response)
+            {
+                try
+                {
+                    //console.log(response);
+                    
+                    TODAYS_DECR_AMOUNT = 0.0;
+                    TODAYS_CONTRACTS_DECR = 0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        TODAYS_DECR_AMOUNT = dataEntry.todays_decr_amount;
+                        TODAYS_CONTRACTS_DECR = dataEntry.todays_contracts_decr;
+                    }
+                    dataEntry = [];
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('8Something bad happened: ' + an_exception);
+                }
+
+
+                $("#todays_decr_count").html(TODAYS_CONTRACTS_DECR);
+                $("#todays_decr_rev").html("$" + TODAYS_DECR_AMOUNT );
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Todays Contracts Increased, jsonp
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_TodaysContractsIncr(book)
+            {
+
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as TODAYS_INCR_AMOUNT, " +
+                        "SUM(CONTRACT.DISCOUNT) as TODAYS_INCR_DISCOUNTS, " +
+                        "COUNT(CONTRACT.KAMOUNT) as TODAYS_CONTRACTS_INCR " +
+                        "FROM CONTRACT  " +
+                        "WHERE " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND CONTRACT.KAMOUNT>CONTRACT.ROLLKAMT " +
+                        "AND !empty(CONTRACT.AA_ACCT) " +
+                        "AND CONTRACT.ROLLKAMT>0 " + userep +
+                        "AND CONTRACT.KDATE" +
+                        " = DATE(" + THE_DATE + ") " + 
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_TodaysContractsIncr");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Todays Contracts Increased, jsonp
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_TodaysContractsIncr(response)
+            {
+                try
+                {
+                    TODAYS_INCR_DISCOUNTS = 0.0;
+                    TODAYS_INCR_AMOUNT = 0.0;
+                    TODAYS_CONTRACTS_INCR = 0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        TODAYS_INCR_DISCOUNTS = dataEntry.todays_incr_discounts;
+                        TODAYS_INCR_AMOUNT = dataEntry.todays_incr_amount;
+                        TODAYS_CONTRACTS_INCR = dataEntry.todays_contracts_incr;
+                    }
+                    dataEntry = [];
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('11Something bad happened: ' + an_exception);
+                }
+                
+                $("#todays_incr_count").html(TODAYS_CONTRACTS_INCR);
+                $("#todays_incr_rev").html("$" + TODAYS_INCR_AMOUNT);
+            }
+
+/******************************************************************************/           
+//////////////////////////END SIDEBAR FUNCTIONS/////////////////////////////////
+/******************************************************************************/
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/******************************************************************************/           
+//////////////////////////START OVERVIEW FUNCTIONS//////////////////////////////
+/******************************************************************************/
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * OverView Controller. Calls all functions for OverView Tab
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_OverView(book)
+            {
+                call_NewContracts(book);
+                /*setTimeout(function() {
+                    call_NewContracts(book);                  
+                }, TIME);
+                setTimeout(function() { 
+                    call_ContractsSold(book);
+                }, TIME);
+                setTimeout(function() {
+                    call_ContractsIncr(book);                 
+                }, TIME);
+                setTimeout(function() {
+                    call_ContractsDecr(book);                  
+                }, TIME);
+                setTimeout(function() {
+                    call_ContractsNotWorked(BOOK);                
+                }, TIME);*/
+                
+                /*setTimeout(function() {
+                    lower_Overview_Boxes(BOOK);                 
+                }, TIME);*/
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView Upper Boxes: NewContracts.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_NewContracts(book)
+            {
+                window.status = "good to go()()()()()()()";
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as NET_REV_NEW, " +
+                        "COUNT(CONTRACT.KAMOUNT) as NEW_COUNT, " +
+                        "SUM(CONTRACT.DISCOUNT) as NEW_DISCOUNTS " +
+                        "FROM CONTRACT  " +
+                        "WHERE " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND CONTRACT.ROLLKAMT=0 " +
+                        "AND !empty(CONTRACT.AA_ACCT) " + userep +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_NewContracts");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView Upper Boxes: NewContracts response
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_NewContracts(response)
+            {
+                $("#new_count").html(0);
+                $("#new_rev").html("0" + "K");
+                
+                try
+                {
+                    NEW_COUNT = 0;
+                    NET_REV_NEW = 0.0;
+                    NET_DISCOUNTS = 0.0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        NEW_COUNT = dataEntry.new_count;
+                        NET_REV_NEW = dataEntry.net_rev_new;
+                        NEW_DISCOUNTS = dataEntry.new_discounts;
+                        
+                    }
+                    dataEntry = [];
+                    
+                    //call next function
+                    call_ContractsSold(BOOK);
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('7Something bad happened: ' + an_exception);
+                }
+
+                $("#new_count").html(NEW_COUNT);
+                $("#new_rev").html(formatCurrency(NET_REV_NEW / 1000) + "K");
+            }
+            
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView Upper Boxes: Renewed Contracts.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_ContractsSold(book)
+            {
+
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as NET_RENEW_AMOUNT, " +
+                        "SUM(CONTRACT.DISCOUNT) as RENEW_DISCOUNTS, " +
+                        "COUNT(CONTRACT.KAMOUNT) as CONTRACTS_RENEW " +
+                        "FROM CONTRACT  " +
+                        "WHERE " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND !empty(CONTRACT.AA_ACCT) " + userep +
+                        "AND CONTRACT.ROLLKAMT>0 " +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractsSold");
+                document.getElementsByTagName('head')[0].appendChild(script);
+
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView Upper Boxes: Renewed Contracts response.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_ContractsSold(response)
+            {
+                $("#renew_count").html(0);
+                $("#renew_rev").html(0 + "K");
+                try
+                {
+                    //console.log(response);
+                    RENEW_DISCOUNTS = 0.0;
+                    NET_RENEW_AMOUNT = 0.0;
+                    CONTRACTS_RENEW = 0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        RENEW_DISCOUNTS = dataEntry.renew_discounts;
+                        NET_RENEW_AMOUNT = dataEntry.net_renew_amount;
+                        CONTRACTS_RENEW = dataEntry.contracts_renew;
+                    }
+                    dataEntry = [];
+                    
+                    call_ContractsIncr(BOOK);
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('4Something bad happened: ' + an_exception);
+                }
+
+                $("#renew_count").html(CONTRACTS_RENEW);
+                $("#renew_rev").html(formatCurrency(NET_RENEW_AMOUNT / 1000) + "K");
+
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView Upper Boxes: Increased Contracts.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_ContractsIncr(book)
+            {
+
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as NET_INCR_AMOUNT, " +
+                        "SUM(CONTRACT.DISCOUNT) as INCR_DISCOUNTS, " +
+                        "COUNT(CONTRACT.KAMOUNT) as CONTRACTS_INCR " +
+                        "FROM CONTRACT  " +
+                        "WHERE " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND CONTRACT.KAMOUNT>CONTRACT.ROLLKAMT " +
+                        "AND !empty(CONTRACT.AA_ACCT) " +
+                        "AND CONTRACT.ROLLKAMT>0 " + userep +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractsIncr");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView Upper Boxes: Increased Contracts response.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_ContractsIncr(response)
+            {
+                $("#incr_count").html(0);
+                $("#incr_rev").html("0" + "K");
+                try
+                {
+                    //console.log(response);
+                    INCR_DISCOUNTS = 0.0;
+                    NET_INCR_AMOUNT = 0.0;
+                    CONTRACTS_INCR = 0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        INCR_DISCOUNTS = dataEntry.incr_discounts;
+                        NET_INCR_AMOUNT = dataEntry.net_incr_amount;
+                        CONTRACTS_INCR = dataEntry.contracts_incr;
+                    }
+                    dataEntry = [];
+                    
+                    call_ContractsDecr(BOOK);
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('5Something bad happened: ' + an_exception);
+                }
+
+                $("#incr_count").html(CONTRACTS_INCR);
+                $("#incr_rev").html(formatCurrency(NET_INCR_AMOUNT / 1000) + "K");
+            }
+
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView Upper Boxes: Decreased Contracts.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_ContractsDecr(book)
+            {
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as NET_DECR_AMOUNT, " +
+                        "SUM(CONTRACT.DISCOUNT) as DECR_DISCOUNTS, " +
+                        "COUNT(CONTRACT.KAMOUNT) as CONTRACTS_DECR " +
+                        "FROM CONTRACT  " +
+                        "WHERE " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND CONTRACT.KAMOUNT<CONTRACT.ROLLKAMT " +
+                        "AND !empty(CONTRACT.AA_ACCT) " +
+                        "AND CONTRACT.ROLLKAMT>0 " + userep +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractsDecr");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView Upper Boxes: Decreased Contracts response.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_ContractsDecr(response)
+            {
+                $("#decr_count").html(0);
+                $("#decr_rev").html("0" + "K");
+                try
+                {
+                    //console.log(response);
+                    DECR_DISCOUNTS = 0.0;
+                    NET_DECR_AMOUNT = 0.0;
+                    CONTRACTS_DECR = 0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) {
+                        var dataEntry = response.result[i];
+
+                        DECR_DISCOUNTS = dataEntry.decr_discounts;
+                        NET_DECR_AMOUNT = dataEntry.net_decr_amount;
+                        CONTRACTS_DECR = dataEntry.contracts_decr;
+                    }
+                    dataEntry = [];
+                    
+                    call_ContractsNotWorked(BOOK);
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('6Something bad happened: ' + an_exception);
+                }
+
+                $("#decr_count").html(CONTRACTS_DECR);
+                $("#decr_rev").html(formatCurrency(NET_DECR_AMOUNT / 1000) + "K");
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView PieCharts
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function call_ContractsNotWorked(book)
+            {
+                var userep = "";
+                if (REP !== "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+
+                var url = "http://" + SERVER + "/" +
+                        "select " +
+                        "CONTRACT.BOOK, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as REV_NOTWORKED, " +
+                        "COUNT(CONTRACT.KAMOUNT) as CONTRACTS_NOTWORKED " +
+                        "FROM CONTRACT  " +
+                        "WHERE " +
+                        "CONTRACT.KAMOUNT>0 " +
+                        "AND !empty(CONTRACT.AA_ACCT) " + userep +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractsNotWorked");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * In OverView PieCharts.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function jsonp_ContractsNotWorked(response)
+            {
+                window.status = "TOP OF THE FUNCTION";
+                //Completed Contracts
+                $('.pie-contract-completed').data('easyPieChart').update(0);
+                $('span', '.pie-contract-completed').text(0);
+
+                //Revenue Renewed
+                $('.pie-revenue-target').data('easyPieChart').update(0);
+                $('span', '.pie-revenue-target').text(0);
+
+                //Revenue Target
+                $('.pie-target').data('easyPieChart').update(0);
+                $('span', '.pie-target').text(0);
+
+                //Canvas Days
+                $('.pie-sales-canvas').data('easyPieChart').update(0);
+                $('span', '.pie-sales-canvas').text(0);
+                
+                try
+                {
+                    CONTRACTS_NOTWORKED = 0;
+                    REV_NOTWORKED = 0.0;
+
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        var dataEntry = response.result[i];
+                        CONTRACTS_NOTWORKED = dataEntry.contracts_notworked;
+                        REV_NOTWORKED = dataEntry.rev_notworked;
+                    }
+                    dataEntry = [];
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('12Something bad happened: ' + an_exception);
+                }
+
+                var contr_comp0 = 0.0;
+                var contr_comp1 = 0.0;
+                var contr_comp2 = 0.0;
+                var contr_comp3 = 0.0;
+                
+                TOTAL_CONTRACTS_BOX = parseFloat(CONTRACTS_NOTWORKED) + parseFloat(CONTRACTS_RENEW);
+                TOTAL_CONTRACTS_NOTWORKED_BOX = parseFloat(CONTRACTS_NOTWORKED);
+                
+                window.status = "not work:" + CONTRACTS_NOTWORKED + " renew:" + CONTRACTS_RENEW + " tot:" + TOTAL_CONTRACTS_NOTWORKED_BOX;
+                
+                contr_comp0 = parseFloat(CONTRACTS_NOTWORKED) + parseFloat(CONTRACTS_RENEW);
+                contr_comp0 = parseFloat(CONTRACTS_RENEW) / contr_comp0;
+                contr_comp0 = 100 * contr_comp0;
+                contr_comp0 = Math.round(contr_comp0);
+
+                if( isNaN(contr_comp0) === true)
+                {
+                    contr_comp0 = 100;
+                }
+
+                contr_comp1 = parseFloat(REV_NOTWORKED) + parseFloat(NET_RENEW_AMOUNT);
+                
+                TOTAL_RENEWED_BOX = parseFloat(REV_NOTWORKED) + parseFloat(NET_RENEW_AMOUNT);
+                NOT_RENEWED_AMOUNT_BOX = parseFloat(NET_RENEW_AMOUNT) - contr_comp1;
+                
+                contr_comp1 = parseFloat(NET_RENEW_AMOUNT) / contr_comp1;
+                contr_comp1 = 100 * contr_comp1;
+                contr_comp1 = Math.round(contr_comp1);
+                
+                if( isNaN(contr_comp1) === true)
+                {
+                    contr_comp1 = 100;
+                }
+                
+                REVENUE_PROJECTED_BOX = parseFloat(REV_TARGET[GLOBAL_INDEX]);
+                ACTUAL_REVENUE_BOX = parseFloat(NET_RENEW_AMOUNT);
+
+                contr_comp2 = parseFloat(REV_TARGET[GLOBAL_INDEX]);
+                contr_comp2 = parseFloat(NET_RENEW_AMOUNT) / contr_comp2;
+                contr_comp2 = contr_comp2 * 100;
+
+                contr_comp2 = Math.round(contr_comp2);
+                if(contr_comp2 > 100 )
+                {
+                    contr_comp2 = 100;
+                }
+                else if( isNaN(contr_comp2) === true)
+                {
+                    contr_comp2 = 100;
+                }
+
+                contr_comp3 = percentWorkDaysCompleted(BOOK);
+                
+                contr_comp3 = Math.round(contr_comp3);
+                
+                if( isNaN(contr_comp3) === true)
+                {
+                    contr_comp3 = 100;
+                }
+
+                //Completed Contracts
+                $('.pie-contract-completed').data('easyPieChart').update(contr_comp0);
+                $('span', '.pie-contract-completed').text(contr_comp0);
+
+                //Revenue Renewed
+                $('.pie-revenue-target').data('easyPieChart').update(contr_comp1);
+                $('span', '.pie-revenue-target').text(contr_comp1);
+
+                //Revenue Target
+                $('.pie-target').data('easyPieChart').update(contr_comp2);
+                $('span', '.pie-target').text(contr_comp2);
+
+                //Canvas Days
+                $('.pie-sales-canvas').data('easyPieChart').update(contr_comp3);
+                $('span', '.pie-sales-canvas').text(contr_comp3);
+
+                lower_Overview_Boxes(BOOK);
+            }
+            
+            function percentWorkDaysCompleted(book)
+            {
+                window.status = "UP IN HERERERERER";
+                var percent_Days_Left = 0.0, from_Today = 0, from_Start = 0;
+                
+                CLOSE_DATE = CLOSE_DATE_ARR[GLOBAL_INDEX];
+                START_DATE = START_DATE_ARR[GLOBAL_INDEX];
+                
+                var today = new Date();
+                var closing_day = new Date(CLOSE_DATE);
+                var start_day = new Date(START_DATE);
+
+                CANVAS_START_DATE_BOX = START_DATE_ARR[GLOBAL_INDEX];
+                CANVAS_END_DATE_BOX = CLOSE_DATE_ARR[GLOBAL_INDEX];
+                
+                if( START_DATE === "12/30/1899" || CLOSE_DATE === "12/30/1899" )
+                {
+                    return 100;
+                }
+
+                //check to see if the formatted start date is "1899, 11, 30"
+                if(START_DATE === DEFAULT_DATE || CLOSE_DATE === DEFAULT_DATE)
+                {
+                    return 100;
+                }
+                else
+                {
+                    //from_Today = getCanvasDaysFromToday();
+                    //from_Start = getTotalCanvasDays();
+                    from_Today = getWorkDays(today, closing_day);
+                    from_Start = getWorkDays(start_day, closing_day);
+                    
+                    if(typeof from_Today === 'undefined' || typeof from_Start === 'undefined')
+                    {
+                        return 100;
+                    }
+                    else if(from_Start === -1 || from_Today === -1)
+                    {
+                        return 100;
+                    }
+                    else if( isNaN(from_Start) === true || isNaN(from_Today) === true )
+                    {
+                        return 100;
+                    }
+                    window.status = from_Today + " & " + from_Start;
+                    
+                    from_Today = parseInt(from_Start) - parseInt(from_Today);
+                    percent_Days_Left = from_Today / from_Start;
+
+                    if(percent_Days_Left > 1)
+                    {
+                        percent_Days_Left = 1;
+                    }
+
+                    return percent_Days_Left * 100;
+                }
+            }
+
+
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Finds the number of work days between two dates excluding weekends.
+             * Preconditions: d1 is the Start date, d2 is the end date. 
+             *                d1 should be <= d2.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function getWorkDays(d1, d2)
+            {
+
+                var bizDays = 0, dd;
+                
+                while(d1 <= d2)
+                {
+                    dd = d1.getDay();
+                    if( (dd%6) !== 0)
+                    {
+                      bizDays++;
+                    }
+                    d1.setDate( d1.getDate() + 1 );
+                }
+
+                return bizDays;
+            }
+            
+            function lower_Overview_Boxes(book)
+            {
+                //box1
+                $("#total_contracts").html(0);
+                $("#num_not_worked").html(0);
+                //box2
+                $("#total_renewed").html(formatCurrency(0));
+                $("#rev_not_worked").html(formatCurrency(0));
+                //box3
+                $("#revenue_projected").html(formatCurrency(0));
+                $("#actual_revenue").html(formatCurrency(0));
+                //box4
+                $("#canvas_start_date").html(0);
+                $("#canvas_end_date").html(0);
+
+                window.status = "$$$$$$$$$$" + TOTAL_CONTRACTS_NOTWORKED_BOX;
+                //box 1
+                $("#total_contracts").html(TOTAL_CONTRACTS_BOX);
+                $("#num_not_worked").html(TOTAL_CONTRACTS_NOTWORKED_BOX);
+                
+                //box2
+                $("#total_renewed").html(formatCurrency(TOTAL_RENEWED_BOX));
+                $("#rev_not_worked").html(formatCurrency(NET_RENEW_AMOUNT));
+                
+                //box3
+                $("#revenue_projected").html(formatCurrency(REVENUE_PROJECTED_BOX));
+                $("#actual_revenue").html(formatCurrency(ACTUAL_REVENUE_BOX));
+
+                //box4
+                if(CANVAS_START_DATE_BOX === "12/30/1899")
+                {
+                    CANVAS_START_DATE_BOX = "No Date Available";
+                }
+
+                if(CANVAS_END_DATE_BOX === "12/30/1899")
+                {
+                    CANVAS_END_DATE_BOX = "No Date Available";
+                }
+
+                $("#canvas_start_date").html(CANVAS_START_DATE_BOX);
+                $("#canvas_end_date").html(CANVAS_END_DATE_BOX);
+            }
+
+/******************************************************************************/           
+//////////////////////////END OVERVIEW FUNCTIONS////////////////////////////////
+/******************************************************************************/
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/******************************************************************************/           
+//////////////////////////START TOPREPS FUNCTIONS///////////////////////////////
+/******************************************************************************/
+
+            function callJSONP_TopReps(book)
+            {
+
+                var url = "http://" + SERVER + "/" +
+                        "select top 30 " +
+                        "CONTRACT.BOOK, " +
+                        "CONTRACT.SALE as REPCODE, " +
+                        "SUM(CONTRACT.KAMOUNT-CONTRACT.DISCOUNT) as NET_SOLD_AMOUNT, " +
+                        "EMPLOYEE.LAST AS REPLASTNAME,  " +
+                        "EMPLOYEE.FIRST AS REPFIRSTNAME  " +
+                        "FROM CONTRACT, BOOK, EMPLOYEE   " +
+                        "WHERE " +
+                        "CONTRACT.BOOK = BOOK.BOOK " +
+                        "AND EMPLOYEE.SALE = CONTRACT.SALE " +
+                        "AND CONTRACT.KAMOUNT>0 " +
+                        "AND (!empty(CONTRACT.AA_ACCT) " +
+                        "AND !empty(CONTRACT.SUBDATE ) " +
+                        "AND EMPLOYEE.ACTIVE <> 'N') " +
+                        "AND CONTRACT.BOOK='" + book + "' " +
+                        "ORDER BY " +
+                        "NET_SOLD_AMOUNT DESC, " +
+                        "CONTRACT.BOOK," +
+                        "CONTRACT.SALE " +
+                        "GROUP BY " +
+                        "CONTRACT.BOOK," +
+                        "CONTRACT.SALE," +
+                        "EMPLOYEE.LAST," +
+                        "EMPLOYEE.FIRST";
+
+                // create a new script element
+                var script = document.createElement('script');
+                // set attribute to src
+                script.setAttribute('src', url + "?callback=jsonp_repsales");
+                
+                // insert the script in out page
+                document.getElementsByTagName('head')[0].appendChild(script);
+
+            }
+
+
+            function jsonp_repsales(response)
+            {
+                try
+                {
+
+                    //console.log(response);
+                    REPFIRSTNAME = [];
+                    NET_CONTRACT = [];
+                    //$("#pieholder").html("");
+                    $(".chartholder").html("");
+                    var dataEntry;
+                    
+                    var len = response.result.length;
+
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+
+                        REPFIRSTNAME.push(trim(dataEntry.repfirstname));
+                        NET_CONTRACT.push(dataEntry.net_sold_amount / 1000);
+
+                    }
+
+                    var s1 = NET_CONTRACT;
+                    if(s1 == "")
+                    {
+                        s1 = [0];
+                    }
+                    // Can specify a custom tick Array.
+                    // Ticks should match up one for each y value (category) in the series.
+                    var ticks = REPFIRSTNAME;
+                    REPFIRSTNAME = [];
+                    NET_CONTRACT = [];
+
+                    if(ticks == "")
+                    {
+                        ticks = [" "];
+                    }
+
+                    //var plot1 = $.jqplot('chartholder', [s1], {
+                    $(repframe).ready(function()
+                    {
+                    $('.chartholder').jqplot([s1], {
+                        title: 'Sales Reps Progress',
+                        highlighter: {
+                            show: true,
+                            sizeAdjust: 0,
+                            tooltipLocation: 'n',
+                            tooltipAxes: 'y',
+                            tooltipFormatString: '<b><i><span style="color:red;"></span></i></b> $%.0fK',
+                            useAxesFormatters: false
+                        },
+                        // The "seriesDefaults" option is an options object that will
+                        // be applied to all series in the chart.
+                        seriesDefaults: {
+                            renderer: $.jqplot.BarRenderer,
+                            rendererOptions: {
+                                fillToZero: true,
+                                varyBarColor: true
+                            }
+                        },
+                        // Custom labels for the series are specified with the "label"
+                        // option on the series option.  Here a series option object
+                        // is specified for each series.
+                        series: [
+                            {label: '&nbsp;'}
+                        ],
+                        // Show the legend and put it outside the grid, but inside the
+                        // plot container, shrinking the grid to accomodate the legend.
+                        // A value of "outside" would not shrink the grid and allow
+                        // the legend to overflow the container.
+                        legend: {
+                            show: true,
+                            placement: 'outsideGrid'
+                        },
+                        axes: 
+                        {
+                            // Use a category axis on the x axis and use our custom ticks.
+                            xaxis: {
+                                renderer: $.jqplot.CategoryAxisRenderer,
+                                ticks: ticks,
+                                rendererOptions: {
+                                    tickRenderer: $.jqplot.CanvasAxisTickRenderer},
+                                tickOptions: {
+                                    formatString: '$%d',
+                                    fontSize: '10pt',
+                                    fontFamily: 'Tahoma',
+                                    angle: 30
+                                }
+                            },
+                            // Pad the y axis just a little so bars can get close to, but
+                            // not touch, the grid boundaries.  1.2 is the default padding.
+                            yaxis: {
+                                pad: 1.05,
+                                rendererOptions: {
+                                    tickRenderer: $.jqplot.CanvasAxisTickRenderer},
+                                tickOptions: {
+                                    formatString: '$%d  ',
+                                    fontSize: '10pt',
+                                    fontFamily: 'Tahoma',
+                                    angle: 0
+                                }
+                            }
+                        }
+                    });
+
+                    });
+                    ticks = "";
+                    s1 = "";
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('tr1 Something bad happened: ' + an_exception);
+                }
+            }
+
+/******************************************************************************/           
+//////////////////////////END TOPREPS FUNCTIONS/////////////////////////////////
+/******************************************************************************/
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/******************************************************************************/           
+//////////////////////////START TOPHEADINGS FUNCTIONS///////////////////////////
+/******************************************************************************/
+
+            function callJSONP_TopHeadings(book)
+            {
+
+                $("#pieholder").html("");
+                $(".chartholder").html("");
+                //var start = Date.now();
+                
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://"+SERVER+"/" +
+                        "SELECT TOP 20 " +
+                        "CALLOUTS.BOOK," +
+                        "CALLOUTS.CLASS as CLASSCODE," +
+                        "CLASS.DESC as CLASS_DESCR, " +
+                        "SUM(CALLOUTS.AMOUNT) as TOTAL_CLASS_VALUE " +
+                        "FROM  BOOK, CALLOUTS, CLASS  " +
+                        "WHERE (!empty(CALLOUTS.AA_ACCT) ) " +
+                        "AND CALLOUTS.BOOK='"+book+"' " +
+                        "AND CALLOUTS.CLASS=CLASS.CODE " +
+                        "GROUP BY " +
+                        "CALLOUTS.BOOK," +
+                        "CALLOUTS.CLASS," +
+                        "CLASS.DESC " +
+                        "ORDER BY " +
+                        "TOTAL_CLASS_VALUE DESC?callback=jsonp_topclass";
+                
+                // the url of the script where we send the asynchronous call
+//                var url = "http://ymagic-dc:8085/select * from book order by book?callback";
+                // create a new script element
+
+                var script = document.createElement('script');
+                // set attribute to src
+                script.setAttribute('src', url);
+                // insert the script in out page
+                document.getElementsByTagName('head')[0].appendChild(script);
+
+            }
+
+
+            function jsonp_topclass(response)
+            {
+                try
+                {
+                    CLASS_DESCR = [];
+                    TOTAL_VALUE = [];
+                    
+                    $("#pieholder").html("");
+                    $(".chartholder").html("");
+                    
+                    var len = response.result.length;
+
+                    for (var i = 0; i < len; i++) {
+                        dataEntry = response.result[i];
+
+                        CLASS_DESCR.push("%% " + trim(dataEntry.class_descr));
+
+                        TOTAL_VALUE.push(dataEntry.total_class_value / 10000);
+
+                    }
+
+
+                    if(TOTAL_VALUE[0] == 0)
+                    {
+                        alert("Can't Display Graph.");
+                        return;
+                        //TOTAL_VALUE[TOTAL_VALUE.length ] = 100;
+                    }
+                    $(repframe).ready(function()
+                    {
+                    $(".loading_intro").hide();
+                    $("#repframe").show();
+                    
+                    var r = Raphael("repframe");
+
+                    var pie = r.piechart(210, 260, 180, TOTAL_VALUE, {legend: CLASS_DESCR, legendpos: "east"});
+                    
+
+                    r.text(395, 40, "Top 20 Headings by Revenue").attr({font: "20px sans-serif"});
+                    pie.hover(function() {
+                        this.sector.stop();
+                        this.sector.scale(1.1, 1.1, this.cx, this.cy);
+
+                        if (this.label) {
+                            this.label[0].stop();
+                            this.label[0].attr({r: 7.5});
+                            this.label[1].attr({"font-weight": 800});
+                        }
+                    }, function() {
+                        this.sector.animate({transform: 's1 1 ' + this.cx + ' ' + this.cy}, 500, "bounce");
+
+                        if (this.label) {
+                            this.label[0].animate({r: 5}, 500, "bounce");
+                            this.label[1].attr({"font-weight": 400});
+                        }
+                    });
+                    });
+                    //$(".loading_intro").show();
+                    //$(".loading_intro").hide();
+                    //$("#overview_stuff").hide();
+                    //$("#repframe").hide();
+                    //$("#repframe").show();
+
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('th1Something bad happened: ' + an_exception);
+                }
+
+            }
+
+/******************************************************************************/           
+//////////////////////////END TOPHEADINGS FUNCTIONS/////////////////////////////
+/******************************************************************************/
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/******************************************************************************/           
+//////////////////////////START CONTRACTS BY WEEK FUNCTIONS/////////////////////
+/******************************************************************************/
+
+            function callJSONP_Kdate(book)
+            {
+                window.status = "IS THI GOING HERE";
+                var userep = "";
+                if (REP != "ALL") {
+                    userep = "AND CONTRACT.SALE = '" + REP + "' ";
+                } else {
+                    userep = "";
+                }
+                //window.status = "TEST "+ REP;
+                
+                var url = "http://" + SERVER + "/" +
+                          "select kdate as dates, count(kdate) as counter " + 
+                          "from CONTRACT WHERE CONTRACT.KAMOUNT>0 " + 
+                          "AND !empty(CONTRACT.AA_ACCT) " + userep +
+                          "AND CONTRACT.BOOK = '" + book + 
+                          "' group by kdate order by kdate";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_Contracts_By_Kdate");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+
+            function jsonp_Contracts_By_Kdate(response)
+            {
+                //alert(response.result.dates);
+                try
+                {
+                    window.status = "TESTING ???";
+                    DATE_ARR = [];
+                    NUMB_ARR = [];
+                    DATE_NUM_ARR = [];
+                    
+                    $(".chartholder").html("");
+                    
+                    var week_Array = [];
+                    
+                    var dataEntry;
+                    
+                    var week_start_dates = [];
+                    var weekly_Totals = [];
+
+                    var currYr, minYr;
+                    var index;
+
+                    var len = response.result.length;
+                    window.status = len;
+                    
+                    if(len !== 0)
+                    { 
+                        var testDate = new Date(response.result[len - 1].dates);
+
+                        minYr = testDate.getFullYear() - 1;
+
+                        for( var i = 0; i < len; i++)
+                        {
+                            dataEntry = response.result[i];
+
+                            //set a date
+                            currYr = dataEntry.dates;
+                            //find index of '/'
+                            index = currYr.lastIndexOf("/");
+                            //chop up the date to get the year
+                            currYr = currYr.substring( (index + 1), currYr.length);
+
+
+                            if( parseInt(currYr) >= minYr)
+                            {
+                                window.status = dataEntry.dates;
+                                DATE_ARR.push(dataEntry.dates);
+                                NUMB_ARR.push(dataEntry.counter);
+                            }
+                        }
+                        window.status = DATE_ARR;
+
+                       
+                    }//end if
+                    
+                    week_Array = getWeeks(DATE_ARR);
+                    weekly_Totals = getWeeklyTotals(DATE_ARR, NUMB_ARR);
+
+                    window.status = "WEEK START DATE " + week_Array;
+                    window.status = "WEEKLY TOTALS " + weekly_Totals;
+                    
+                    
+                    var s1 = weekly_Totals;
+                    if(s1 === "")
+                    {window.status = "SO FAR, SO GOOD...";
+                        s1 = [0];
+                    }
+                    // Can specify a custom tick Array.
+                    // Ticks should match up one for each y value (category) in the series.
+                    var ticks = week_Array;
+
+                    if(ticks === "")
+                    {
+                        ticks = [" "];
+                    }
+                   
+                    $(repframe).ready(function()
+                    {
+                    $('.chartholder').jqplot([s1], {
+                        title: 'Contracts By Week',
+                        highlighter: {
+                            show: true,
+                            sizeAdjust: 0,
+                            tooltipLocation: 'n',
+                            tooltipAxes: 'y',
+                            tooltipFormatString: '<b><i><span style="color:red;"></span></i></b> %.0f',
+                            useAxesFormatters: false
+                        },
+                        // The "seriesDefaults" option is an options object that will
+                        // be applied to all series in the chart.
+                        seriesDefaults: {
+                            renderer: $.jqplot.BarRenderer,
+                            rendererOptions: {
+                                fillToZero: true,
+                                varyBarColor: true
+                            }
+                        },
+                        // Custom labels for the series are specified with the "label"
+                        // option on the series option.  Here a series option object
+                        // is specified for each series.
+                        series: [
+                            {label: '&nbsp;'}
+                        ],
+                        // Show the legend and put it outside the grid, but inside the
+                        // plot container, shrinking the grid to accomodate the legend.
+                        // A value of "outside" would not shrink the grid and allow
+                        // the legend to overflow the container.
+                        legend: {
+                            show: true,
+                            placement: 'outsideGrid'
+                        },
+                        axes: 
+                        {
+                            // Use a category axis on the x axis and use our custom ticks.
+                            xaxis: {
+                                renderer: $.jqplot.CategoryAxisRenderer,
+                                ticks: ticks,
+                                rendererOptions: {
+                                    tickRenderer: $.jqplot.CanvasAxisTickRenderer},
+                                tickOptions: {
+                                    mark: 'outside',
+                                    formatString: '%d',
+                                    fontSize: '9pt',
+                                    fontFamily: 'Stone',
+                                    angle: 80
+                                }
+                            },
+                            // Pad the y axis just a little so bars can get close to, but
+                            // not touch, the grid boundaries.  1.2 is the default padding.
+                            yaxis: {
+                                pad: 1.05,
+                                min:0,
+                                rendererOptions: {
+                                    tickRenderer: $.jqplot.CanvasAxisTickRenderer},
+                                tickOptions: {
+                                    formatString: '%d  ',
+                                    fontSize: '10pt',
+                                    fontFamily: 'Tahoma',
+                                    angle: 0
+                                }
+                            }
+                        }
+                    });
+                    
+                    });
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    window.status = "ERROR: " + an_exception;
+                    alert('CT_BY_D Something bad happened: ' + an_exception);
+                }
+            }
+            
+            function formatDate2(str)
+            {
+                var year, month, day, theDate;
+                
+                year = get_Year2(str);
+                month = get_Month2(str);
+                //month = month-1;
+                if((month) < 10 )
+                {
+                    month = "0" + (month);
+                }
+                day = get_Day2(str);
+                if(day < 10)
+                {
+                    day = "0" + day;
+                }
+                theDate = year + "-" + month + "-" + day;
+                
+                return theDate;
+            }
+            
+            /***************************************
+             * Trims the string to get the year
+             * @param {type} str
+             * @returns {@exp;str@call;substring}
+             ***************************************/
+            function get_Year2(str)
+            {
+                var strVal = String(str);
+                var index = strVal.lastIndexOf("/");
+                return strVal.substring((index + 1), strVal.length);
+            }
+           
+            /***************************************
+             * Trims the string to get the month
+             * @param {type} str
+             * @returns {@exp;str@call;substring}
+             ***************************************/
+            function get_Month2(str)
+            {
+                var strVal = String(str);
+                var index = strVal.indexOf("/");
+                return strVal.substring(0, index);
+            }
+            
+            /***************************************
+             * Trims the string to get the day
+             * @param {type} str
+             * @returns {@exp;str@call;substring}
+             ***************************************/
+            function get_Day2(str)
+            {
+                var strVal = String(str);
+                var index0 = strVal.indexOf("/"), index1 = strVal.lastIndexOf("/");
+                return strVal.substring( (index0 + 1), index1 );  
+            }
+            
+            /****************************************
+             * Returns the weekly totals array of the 
+             * number array passed in.
+             * @param {type} dateArry
+             * @returns {Number|Array|String}
+             ***************************************/
+            function getWeeklyTotals(dateArray, numArray)
+            {
+                var weekCounter = 0;
+                var weekly_Totals = [];
+                weekly_Totals[0] = 0;
+                var tempDate, checkDate;
+                
+                if(dateArray !== "")
+                {
+                    checkDate = new Date(dateArray[0]);
+                }
+                else
+                {
+                    return 0;
+                }
+                
+                for(var i = 0; i < dateArray.length; i++)
+                {
+                    tempDate = new Date(dateArray[i]);
+
+                    while(checkDate < tempDate)
+                    {
+                        if(checkDate.getDay() === 0)
+                        {
+                            weekCounter++;
+                            weekly_Totals[weekCounter] = 0;
+                        }
+                        checkDate.setDate( checkDate.getDate() + 1);
+                    }
+
+                    weekly_Totals[weekCounter] = parseInt(weekly_Totals[weekCounter]) + parseInt(numArray[i]);          
+                }
+                return weekly_Totals;
+            }
+
+            /***********************************
+             * Pass in an array of dates and get back an array
+             * of dates that correspond to the dates belonging
+             * to calander dates that match Sunday
+             * 
+             * @param {type} str
+             * @returns {String}
+             **********************************/
+            function getWeeks(dateArry)
+            {
+                //var weeksCount = 0;
+                var week_Array = [];
+                var tempDate, checkDate;
+                
+                if(dateArry != "")
+                {    
+                    checkDate = new Date(dateArry[0]);
+                    checkDate.setDate( checkDate.getDate() - 7);
+                }
+                else
+                {
+                    return 0;
+                }
+                
+                for(var i = 0; i < dateArry.length; i++)
+                {
+                    tempDate = new Date(dateArry[i]);
+
+                    while( checkDate < tempDate )
+                    {
+                        if(checkDate.getDay() === 0)
+                        {
+                            week_Array.push( get_Month_Date_Yr(checkDate) );
+                        }
+                        
+                        checkDate.setDate( checkDate.getDate() + 1);
+                    }
+                    
+                }
+                //alert(weeksCount + " " + WEEK_ARRAY.length );
+                return week_Array;
+            }
+            
+            
+            /***********************************************
+             * Send in a date and get out a formatted date
+             * @param {type} str
+             * @returns {String}
+             **********************************************/
+            function get_Month_Date_Yr(str)
+            {
+                var temp_date = new Date(str);
+                
+                var temp_year = temp_date.getFullYear();
+                var temp_month = temp_date.getMonth();
+                var temp_day = temp_date.getDate();
+                
+                            
+                switch(temp_month)
+                {
+                    case 0:
+                        temp_date = "Jan " + temp_day + ", " + temp_year;
+                        break;
+                    case 1:
+                        temp_date = "Feb " + temp_day + ", " + temp_year;
+                        break;
+                    case 2:
+                        temp_date = "Mar " + temp_day + ", " + temp_year;
+                        break;
+                    case 3:
+                        temp_date = "Apr " + temp_day + ", " + temp_year;
+                        break;
+                    case 4:
+                        temp_date = "May " + temp_day + ", " + temp_year;
+                        break;
+                    case 5:
+                        temp_date = "June " + temp_day + ", " + temp_year;
+                        break;
+                    case 6:
+                        temp_date = "July " + temp_day + ", " + temp_year;
+                        break;
+                    case 7:
+                        temp_date = "Aug " + temp_day + ", " + temp_year;
+                        break;
+                    case 8:
+                        temp_date = "Sept " + temp_day + ", " + temp_year;
+                        break;
+                    case 9:
+                        temp_date = "Oct " + temp_day + ", " + temp_year;
+                        break;
+                    case 10:
+                        temp_date = "Nov " + temp_day + ", " + temp_year;
+                        break;
+                    case 11:
+                        temp_date = "Dec " + temp_day + ", " + temp_year;
+                        break;
+                    default:
+                        temp_date = "Dec 30, 1899";
+                }
+                
+                return temp_date;
+            }
+
+/******************************************************************************/           
+//////////////////////////END CONTRACTS BY WEEK FUNCTIONS///////////////////////
+/******************************************************************************/
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+/******************************************************************************/           
+///////////////////////////START UTILITY FUNCTIONS//////////////////////////////
+/******************************************************************************/            
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Format a string
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function trim(str) {
+                str = str.replace(/^\s+/, '');
+                for (var i = str.length - 1; i >= 0; i--) {
+                    if (/\S/.test(str.charAt(i))) {
+                        str = str.substring(0, i + 1);
+                        break;
+                    }
+                }
+                return str;
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Format a Currency
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function formatCurrency(num) 
+            {
+                num = num.toString().replace(/\$|\,/g, '');
+                if (isNaN(num))
+                    num = "0";
+                sign = (num == (num = Math.abs(num)));
+                num = Math.floor(num * 100 + 0.50000000001);
+                cents = num % 100;
+                num = Math.floor(num / 100).toString();
+                if (cents < 10)
+                    cents = "0" + cents;
+                for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+                    num = num.substring(0, num.length - (4 * i + 3)) + ',' + 
+                        num.substring(num.length - (4 * i + 3));
+
+                return (((sign) ? '' : '-') + '$' + num);
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Prevents the page from jumping when clicking around the page.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            $(".span3").click(function(e) {
+                e.preventDefault();
+            } );
+            $(".box-holder").click(function(e) {
+                e.preventDefault();
+            } );
+            $('#myTabs a').click(function(e) { 
+                e.preventDefault();
+                $(this).tab('show');
+            });
+            
+/******************************************************************************/           
+//////////////////////////END UTILITY FUNCTIONS/////////////////////////////////
+/******************************************************************************/
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+/******************************************************************************/           
+///////////////////////////JAVAFX FUNCTIONS/////////////////////////////////////   
+/******************************************************************************/
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * These functions are called from JavaFX to set the server and book
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            
+            function setServerFromJava(server)
+            {
+                SERVER = server;
+            }
+            
+            function setBookFromJava(book)
+            {
+                TEMP_BOOK = book;
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * These functions are called from JavaFX to get the server and book
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            
+            function pass_Server_to_Java()
+            {
+                var strServer = SERVER;
+                
+                return strServer;
+            }
+    
+            function pass_Book_to_Java()
+            {
+                var strBook = BOOK;
+                
+                return strBook.toString();
+            }
+            
+/******************************************************************************/           
+////////////////////////////////////////////////////////////////////////////////            
+/******************************************************************************/
+
+        </script>
+
+    </body>
+</html>

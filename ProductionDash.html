@@ -1,0 +1,2704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Magic Production Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <!-- CSS files-->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="css/dash.css" rel="stylesheet">
+
+        <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="js/easypie/jquery.easy-pie-chart.css">
+        <!-- Google font -->
+        <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.canvasTextRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.canvasAxisTickRenderer.min.js"></script>
+        <!--Top Rep -->
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.barRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.pointLabels.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.dateAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.canvasTextRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.canvasAxisTickRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="js/jqplot/jqplot.highlighter.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/jqplot/jquery.jqplot.min.css" />
+        <script src="js/raphael/raphael.js"></script>
+        <script src="js/raphael/g.raphael.js"></script>
+        <script src="js/raphael/g.pie.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+        <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+        
+        <style>
+            .easy-pie-chart {
+                left: 33%;
+            }
+            .pielabel {
+                display: block;
+                text-align: center;
+                margin-top: 3px;
+            }
+            .notextdecor {
+                text-decoration:none;
+                color:#FFFFFF;
+                
+            }
+        </style>
+        <style>
+            
+            .refreshImg {
+                margin-left: 1200px;
+            }
+            .myOffset {
+                margin-left: 3%;
+            }
+            
+            .myOffset2 {
+                margin-left: 12%;
+            }
+            
+            .side-box {
+                height: 100px;
+            }
+            .dateBox {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                
+                width: 120px;
+                height: 110px;
+                position: absolute;             
+            }
+            
+            .dateBoxShift {
+                width: 120px;
+                height: 150px;
+                position: absolute;
+                right: 990px;
+            }
+            
+            .side-box-holder {
+                width: 100px;
+                height: 125px;
+                margin-top: -48%;
+            }
+            
+            .myTabs{
+                background-color: #49708A;
+            }
+            .tabColor {
+                background-color: #49708A;
+            }
+            .center{
+                width: 150px;
+                height: 150px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -10%;
+                margin-top: -5%;
+            }
+            .chartholder {
+                width:790px;
+                height:500px;
+                margin: 5px;
+                font-family:'Asap', sans-serif;
+                
+            }
+            .loading_intro {
+                width:790px;
+                height:500px;
+                margin: 5px;
+            }
+            .sales_content {
+                width:790px;
+                height:500px;
+                margin: 5px;
+                font-family:'Asap', sans-serif;
+                
+            }
+            .lowerBox {
+                background-color: #DDDDDD;
+                height:100px;
+            }
+            .data_font {
+                font-family:'Asap', sans-serif;
+                font-size: 14px;
+                text-decoration:none;
+                color: #49708A;
+            }
+            /*.pieholder {
+                width:790px;
+                height:500px;
+            }*/
+
+            #chartholder {
+                width: 790px;
+                height: 500px;
+                margin: 5px;
+                font-family:'Asap', sans-serif;
+            }
+
+            #pieholder {
+                width: 790px;
+                height: 500px;
+                margin: 5px;
+                font-family:'Asap', sans-serif;
+            }
+            #bigBox {
+                /*position: absolute;
+                top: 50%;
+                margin-top: -16%;*/
+                top: 50%;
+                margin-top: -2.3%;
+            }
+            #tallBox {
+                height: 612px;
+                top: 50%;
+                margin-top: -2.35%;
+                
+            }
+            #footer {
+                
+                /*margin-top: 0%;*/
+            }
+            #revBox {
+                height: 75px;
+            }
+            #rowBox {
+                height: 580px;
+            }
+            #railBar {
+                margin-top: 2%;
+            }
+            #railBar2 {
+                background-color: #49708A;
+                margin-top: 4%;
+            }
+            #footCred {
+                
+                margin-top: -1.75%;
+            }
+            #lockDown {
+                /*position:initial;*/
+                /*resize: none;
+                overflow: auto;*/
+                /*margin-left: auto;
+                margin-right: auto;
+                width: max-content;
+                height: max-content;*/
+            }
+            #QA{
+                float: right;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div id="lockDown">
+        <!-- Navbar -->
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="index.html">
+                        <!--<div class="icon-magic" style="color:#000"></div>Magic Dashboard</a>-->
+                        <img src="magicCrop.PNG" width="30" height="30"/>Production Dashboard
+                        
+                    </a>
+                    
+                    <!--<div class="nav-collapse">
+                           <img class='pull-right' src='ArrowWSquareCrop.PNG' width='30' height='30'/> 
+                        </div>-->
+                <div class="refreshImg">
+                    <a id="refresh_box" class="brand pull-right"> 
+                        
+                        <img class='pull-right' src='ArrowWSquareCrop.PNG' width='23' height='23'/> 
+                    </a>
+                </div> 
+                   
+                </div>
+                
+            </div>
+            
+        </div>
+        <!-- /Navbar -->
+        <!-- Main content -->
+        <div id="main-content">
+            <!-- Container -->
+            <div class="container">
+                <!-- Header boxes -->
+                <div class="box-container">
+                    </div>
+                <!-- /Header boxes -->
+                <div class="row" id="rowBox">
+                    <!-- Sidebar -->
+                    <div class="span3" id="tallBox">
+                        <h1 class="page-title tabColor">Product</h1>
+                        <select id="bookcombo" class="combobox input-large span3" name="normal">
+                            <!--<option value="LC13" selected="">LC13</option>INITIAL LOADING OF COMBO BOX-->
+                            
+                        </select>
+                        
+                        <h1 class="page-title tabColor">Production Team</h1>
+                        <select id="repcombo" class="combobox input-large span3" name="normal">
+                            <option value="ALL" selected="">All</option>
+                        </select>
+                        <h1 class="page-title tabColor">Today's Production Totals<span id="ad_totals_count" class="pull-right"></span></h1>
+                        <ul id="sidebar" class="nav nav-tabs nav-stacked" data-tabs="tabs">
+                            
+                            <!--REMOVE THIS<li id="get_repcomments">
+                                <a href="#">
+                                    <i class="icon-comments-alt"></i>&nbsp;&nbsp;Rep Comments
+                                    <span class="label label-success pull-right">New!</span>
+                                    
+                                </a>
+                            </li>REMOVE-->
+                            <li>
+                                <a href="#">
+                                    <!--<i class="icon-bolt"></i>&nbsp;&nbsp;New Today-->
+                                    <img src="FlagCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Retired Today
+                                    <!--TEST<span id="todays_new_rev" class="label label-success pull-right tabColor">$0</span>-->
+                                    <span id="nowhere_count" class="label label-success pull-right tabColor">0</span>
+                                    
+                                    
+                                    
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <!--<i class="icon-truck"></i>&nbsp;&nbsp;Renews Today-->
+                                    <img src="starIconCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;On Hold Today
+                                    <!--TEST<span id="todays_renew_rev" class="label label-success pull-right tabColor">$0</span>-->
+                                    <span id="canvas_count" class="label label-success pull-right tabColor">0</span>
+                                    
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <!--<i class="icon-thumbs-up"></i>&nbsp;&nbsp;Increases Today-->
+                                    <img src="checkIconCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Awaiting Confirmation 
+                                    <!--TEST<span id="todays_incr_rev" class="label label-success pull-right tabColor">$0</span>TEST-->
+                                    <span id="proof_count" class="label label-success pull-right tabColor">0</span>                   
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <!--<i class="icon-thumbs-down"></i>&nbsp;&nbsp;Decreases Today-->
+                                    <img src="thumbsUpCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Awaiting Proof
+                                    <!--TEST<span id="todays_decr_rev" class="label label-success pull-right tabColor">$0</span>-->
+                                    <span id="ads_count" class="label label-success pull-right tabColor">0</span>
+                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    
+                                    <!--<div class="side-box">
+                                        
+                                        <div>Start <span id="start_date" class="label label-success myOffset2 tabColor">&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;</span></div>
+                                        <div>&nbsp;</div>
+                                        
+                                        <div>Close<span id="art_close_date" class="label label-success myOffset2 tabColor">&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;</span></div>
+                                        <div>&nbsp;</div>
+                                        
+                                        <div>Days Left<span id="days_left_count" class="label label-success myOffset tabColor">0</span></div>
+                                        <div>&nbsp;</div>
+                                        
+                                        <div class="side-box-holder pull-right">
+                                        <div class="pie-total-ads pull-right" data-percent="0">
+                                            <span>0</span>%</div>
+                                        <div class="pielabel"></div>
+                                    </div>
+                                    
+                                    </div>-->
+                                    <div class="side-box">
+                                        <div class="dateBox">
+                                            <div>
+                                            Canvas Start<span class="label label-success tabColor" id="canvas-start-date">&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+                                            </div>
+                                            <div>
+                                            Canvas Close<span class="label label-success tabColor" id="canvas-end-date">&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+                                            </div>
+                                            <div>Days Left&nbsp;<span class="label label-success tabColor" id="canvas-days-remaining">0</span></div>
+                                        </div>
+                                        <div class="dateBoxShift">
+                                            <div>
+                                            Art Close<div><span class="label label-success tabColor" id="art-close-date">&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;</span></div>
+                                            </div>
+                                            <div>
+                                            Publish Date<div><span class="label label-success tabColor" id="book-close-date">&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;</span></div>
+                                            </div>
+                                            <div>Days Left&nbsp;<span class="label label-success tabColor" id="production-days-remaining">0</span></div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                    <!-- /Sidebar -->
+                    <!-- Content -->
+                    <div class="span9">
+                        <!--<h1 class="page-title">Dashboard Overview</h1>-->
+                        
+                        <div class="widget" id="bigBox">
+                            <div class="widget-header">
+                                <div class="tabbable" >
+                                 <ul class="nav nav-tabs myTabs">
+                                 
+                                      <li class="active"><a class="atab notextdecor" href="#sales_overview" data-toggle="tab">Contract Status</a></li>
+                                      <li><a class="btab notextdecor" href="#sales_rep_prog" data-toggle="tab">Free Status</a></li>
+                                      <!--<li><a class="ctab notextdecor" href="#total_sales" data-toggle="tab">Query Status</a></li>-->
+                                      <!--<li><a class="dtab notextdecor" href="#total_sales2" data-toggle="tab">Ads Per Graphic Artist</a></li>
+                                      <li><a class="etab notextdecor" href="#total_sales3" data-toggle="tab">Ads Per Proofer</a></li>-->
+                                      
+                                      
+                                      <!--<li><a href ="#other_chart" data-toggle="tab">Other Chart</a></li>-->
+                                  </ul>
+                                <!--<h3>
+                                    <i class="icon-signal"></i>&nbsp;&nbsp;Charts</h3>-->   
+                                  <div class="tab-content">
+                                      
+                                      <div class="tab-pane active" id="sales_overview"></div>
+                                      <div class="tab-pane" id="sales_rep_prog"></div>
+                                      <!--<div class="tab-pane" id="total_sales"></div>-->
+                                      <!--<div class="tab-pane" id="total_sales2"></div>
+                                      <div class="tab-pane" id="total_sales3"></div>-->
+
+                                  </div>
+                                </div>
+                            </div>
+                            
+                            <div class="widget-content">
+                                <!-- <iframe id="frame" src="topheadings.html" width="390" height="550" frameborder="0" allowTransparency="true"></iframe>
+                                <iframe id="frame" src="topheadings2.html" width="390" height="550" frameborder="0" allowTransparency="true"></iframe> -->
+                                <!--<iframe id="repframe" src="topreps.html" width="835" height="550" frameborder="0" allowTransparency="true"></iframe>-->
+                                <div class="box-container">
+                                    <div class="box-holder" >
+                                        <!--<div class="loading_intro" id="loading"><div vertical-align="center" ><img src="loading81.gif" width="100" height="100"/></div></div>-->
+                                        <div class="loading_intro" id="loading"><div class="center" ><img src="ajax-loader(2).gif" /></div></div>
+
+                                        
+                                        <!-- ////////////////PRODUCTION STAT////////No Artwork, Not Started, In Art Department, In Quality Control, In Proof Generation, Awaiting Approval, In Revision, Approved///////////////-->
+                                        <div class="production_stat" id="production_stat_id">
+                                            <!--UPPER BOX-->
+                                            <div class="box-container">
+                                                <!--Box1-->
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="newAd">
+                                                                
+                                                                <span id="unedited_count">0</span>Unedited Contracts
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="renew">
+                                                                <span id="edited_not_retired_count">0</span>Edited, not Retired
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="not_renew">
+                                                                <span id="retired_count">0</span>Retired Contracts
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="revision">
+                                                                <span id="on_hold_count">0</span>Contracts on Hold
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                
+                                            </div><!--END Lower BOX -->
+                                            
+                                            <div class="box-container">
+                                                        <div class="box-holder">
+                                                            <div class="pie-unedited" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Unedited Contracts</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-edited-not-retired" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Edited, not Retired</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-retired" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Retired Contracts</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-on-hold" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Contracts on Hold</div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                           <!--End pie-->
+                                            
+                                            <h1 class="page-title">
+                                                <img src="dudeCrop.PNG" width="20" height="20"/>&nbsp;&nbsp;Total Contracts
+                                                <span id="total_contracts_count">&nbsp;0</span>
+                                            </h1>
+                                           
+                                            <div class="box-container">
+                                                        <div class="box-holder">
+                                                            <div class="pie-import-pending" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Import Pending</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-awaiting-verification" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Awaiting Verification</div>
+                                                            
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-awaiting-confirmation" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Awaiting Confirmation</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            
+                                                            <div class="pie-awaiting-proof" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Awaiting Proof</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            
+                                                            <div class="pie-orphaned-anchors" data-percent="0">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Orphaned Anchors</div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                           <!--End pie-->
+                                           
+                                           <!--UPPER BOX-->
+                                            <div class="box-container">
+                                                <!--Box1-->
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="newAd">
+                                                                
+                                                                <span id="import_pending_count">0</span>Import Pending
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="not_renew">
+                                                                <span id="need_verification_count">0</span>Need Verification
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                
+                                                <div class="box-holder">
+                                                    
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="renew">
+                                                                <span id="not_confirmed_count">0</span>Not Confirmed
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="deleted">
+                                                                <span id="need_proof_count">0</span>Need Proof
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="deleted">
+                                                                <span id="orphan_count">0</span>Orphan Anchors
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div><!--END Lower BOX -->
+                                            
+                                        </div><!--END prod_stat-->
+                                        
+                                        <!-- ////////////////END PRODUCTION STAT//////////////////////-->
+                                        <!-- ////////////////CLOUDPROOF  STAT/////////////////////////-->
+                                        
+                                        <!--///CloudProofs Status (
+                                        Not Sent, 
+                                        Not Yet Viewed, 
+                                        Awaiting Approval, 
+                                        Changes Requested,
+                                        Approved, 
+                                        Approved with Changes, 
+                                        Auto Approved)///-->
+                                        
+                                        <div class="cloud_proof_stat" id="cloud_proof_stat_id">
+                                            <!--UPPER BOX-->
+                                            <div class="box-container">
+                                                <!--Box1-->
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="newAd">
+                                                                
+                                                                <span id="leads_count">0</span>Leads
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="renew">
+                                                                <span id="print_count">0</span>Print
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="not_renew">
+                                                                <span id="omit_count">0</span>Omit
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                
+                                                
+                                                
+                                            </div><!--END Lower BOX -->
+                                            
+                                            <div class="box-container">
+                                                        <div class="box-holder">
+                                                            <div class="pie-leads" data-percent="100">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Leads</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-print" data-percent="100">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Print</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-omit" data-percent="100">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Omit</div>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                           <!--End pie-->
+                                            
+                                            <h1 class="page-title">
+                                                <img src="dudeCrop.PNG" width="20" height="20"/>Total Free Primary Accounts
+                                                <span id="total_free_count">&nbsp;&nbsp;0</span></h1>
+                                                
+                                                <div class="box-container">
+                                                        
+                                                        <div class="box-holder">
+                                                            <div class="pie-delete" data-percent="100">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Delete</div>
+                                                        </div>
+                                                        <div class="box-holder">
+                                                            <div class="pie-review" data-percent="100">
+                                                                <span>0</span>%</div>
+                                                            <div class="pielabel">Review</div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                           
+                                           <div class="box-container">
+                                                <!--Box1-->
+                                                
+                                                
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="revision">
+                                                                <span id="delete_count">0</span>Delete
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="box-holder">
+                                                    <a href="#">
+                                                        <div class="box">
+                                                            <div id="revision">
+                                                                <span id="review_count">0</span>Review
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                
+                                            </div><!--END Lower BOX -->
+                                            
+                                            
+                                           <!--End pie-->
+                                            
+                                        </div><!--END prod_stat-->
+                                        
+                                        <!-- ////////////////END RENEWAL STAT//////////////////////-->
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <div id="railBar"><hr></div>
+                    <p class="pull-right" id="footCred">Powered by Yellow Magic &copy; 2013</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/easypie/jquery.easy-pie-chart.js"></script>
+        <script>
+
+            $('.pie-total-ads').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#d9d9d9',
+                barColor: '#ea4e3d'
+            });
+
+           ////////////////CONTRACT STATUS///////////////////////
+            $('.pie-unedited').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3da0ea'
+            });
+            
+            $('.pie-edited-not-retired').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#ea4e3d'
+            });
+            $('.pie-retired').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#ead03d'
+            });
+            $('.pie-on-hold').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#b93dea'
+            });
+            $('.pie-import-pending').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#ea3d6e'
+                
+            });
+            $('.pie-awaiting-verification').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#623dea'
+            });
+            $('.pie-awaiting-confirmation').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#ea793d'
+            });
+            $('.pie-awaiting-proof').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3dea88'
+            });
+            $('.pie-orphaned-anchors').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#eaa53d'
+            });
+            ////////////////RENEWAL STAT///////////////
+            $('.pie-leads').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#eaa53d'
+            });
+            $('.pie-print').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#623dea'
+            });
+            $('.pie-omit').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3dea88'
+            });
+            $('.pie-delete').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#ea4e3d'
+            });
+            $('.pie-review').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3da0ea'
+            });
+            $('.pie-not-sold').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#b93dea'
+            });
+            $('.pie-complete').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#ead03d'
+            });
+            
+            //////////CLOUDPROOF///////////////////////
+            
+            $('.pie-not-sent').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3dea88'
+            });
+            $('.pie-not-yet-viewed').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3da0ea'
+            });
+            $('.pie-cloud-awaiting-approval').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#b93dea'
+            });
+            $('.pie-changes-requested').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#ead03d'
+            });
+            $('.pie-cloud-approved').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#623dea'
+            });
+            $('.pie-approved-w-changes').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#eaa53d'
+            });
+            $('.pie-auto-approved').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#ea3d6e'
+            });
+            
+            
+            
+            ///////////////////////////////////////////         
+            $('.pie-contract-completed').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3da0ea'
+            });
+            $('.pie-contract-completed2').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#dc143c'
+            });
+            $('.pie-revenue-target').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#3dea44'
+            });
+            $('.pie-target').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#d71de6'
+            });
+            $('.pie-sales-canvas').easyPieChart({
+                animate: 2000,
+                scaleColor: false,
+                lineWidth: 12,
+                lineCap: 'square',
+                size: 100,
+                trackColor: '#e5e5e5',
+                barColor: '#14d9c3'
+            });
+        </script>
+        <script>
+
+            self.setInterval(function(){dataRefresh();},900000);
+            BOOK = "";
+            BOOKS = [];
+            
+            FREE_TABLE_BOOK = "";
+            FREE_TABLE_BOOKS = [];
+
+            SERVER = "";
+            TEMP_BOOK = "";
+            TEMP_INDEX = 0;
+            
+            SWITCH_STATE = 0;
+            BOOKS = [];
+            GLOBAL_INDEX = 0;
+            REPFIRSTNAME = [];
+            NET_CONTRACT = [];
+
+            REP_NAME = [];
+            REP_CODE = [];
+            REP_INDEX = 0;
+
+            CANSTART_ARR = [];
+            CANEND_ARR = [];
+            ARTCLOSE_ARR = [];
+            PUB_DATE_ARR = [];
+            
+            CANSTART_DATE = "";
+            CANEND_DATE = "";
+            ARTCLOSE_DATE = "";
+            PUB_DATE_DATE = "";
+            
+            CLOSE_DATE = "";
+            START_DATE = "";
+            
+            DEFAULT_DATE = "12/30/1899";
+            FROM_TODAY = 0;
+            TOTAL_COUNT = 0;            
+            TIME = 200;
+
+            //CONTRACT STATS
+            CONTRACT_TOTAL = 0;
+            UNEDITED_CONTRACTS = 0;
+            EDITED_NOT_RETIRED = 0;
+            RETIRED_CONTRACTS = 0;
+            CONTRACTS_ON_HOLD = 0;
+            IMPORT_PENDING = 0;
+            AWAITING_VERIFICATION = 0;
+            AWAITING_CONFIRMATION = 0;
+            AWAITING_PROOF = 0;
+            ORPHANED_ANCHORS = 0;
+
+
+            CLICKED = false;
+
+            $(".loading_intro").hide();
+            $("#production_stat_id").show();
+            $("#cloud_proof_stat_id").hide();
+
+                
+            $(".atab").click(function() 
+            { 
+                CLICKED = true;
+                SWITCH_STATE = 0;
+                dataRefresh();
+            });
+            $(".btab").click(function() 
+            { 
+                CLICKED = true;
+                SWITCH_STATE = 1;
+                dataRefresh();
+            });
+            
+            /*$(".dtab").click(function() 
+            { 
+                CLICKED = true;
+                SWITCH_STATE = 3;
+                dataRefresh();
+            });*/
+            /*$(".etab").click(function() 
+            { 
+                CLICKED = true;
+                SWITCH_STATE = 4;
+                dataRefresh();
+            });*/
+            
+            $("#bookcombo").change(function() { 
+                BOOK = $("#bookcombo").val();
+                
+                var bi = parseInt($("#bookcombo").prop("selectedIndex"));
+                GLOBAL_INDEX = bi;
+                FREE_TABLE_BOOK = FREE_TABLE_BOOKS[GLOBAL_INDEX];
+                
+                CANSTART_DATE = CANSTART_ARR[GLOBAL_INDEX];
+                CANEND_DATE = CANEND_ARR[GLOBAL_INDEX];
+                ARTCLOSE_DATE = ARTCLOSE_ARR[GLOBAL_INDEX];
+                PUB_DATE_DATE = PUB_DATE_ARR[GLOBAL_INDEX];
+                
+                setTimeout(function(){
+                    call_Reps(BOOK);
+                },TIME);
+                setTimeout(function(){
+                    dataRefresh();
+                },TIME);  
+                
+            });
+            
+            $("#repcombo").change(function() 
+            {
+                    REP = $("#repcombo").val();
+                    //window.status = "index: " + document.getElementById("repcombo").selectedIndex;
+                    REP_INDEX = document.getElementById("repcombo").selectedIndex;
+                    //alert(REP_CODE[REP_INDEX]);
+                    dataRefresh();
+            });
+            
+            $(".span3").click(function(e) {
+                e.preventDefault();
+            } );
+            
+            $(".box-holder").click(function(e) {
+                e.preventDefault();
+            } );
+            
+            $('#myTabs a').click(function(e) { 
+                e.preventDefault();
+                $(this).tab('show');
+            });
+            $('#refresh_box').click(function(e) {
+                e.preventDefault();
+                
+                dataRefresh();
+            });
+            
+            window.addEventListener("load", function(e) 
+            {
+                window.status = "START_LOADING";
+                if(SERVER === '')
+                {
+                    SERVER = "ERROR!!!";
+                }
+
+
+                $(".loading_intro").hide();
+                $("#production_stat_id").show();
+                $("#cloud_proof_stat_id").hide();
+
+
+                setTimeout(function() { 
+                    call_Books();
+                }, TIME);
+            });
+            
+            function dataRefresh()
+            {      
+                window.status = "REFRESH, CLICKED = " + CLICKED;
+
+                REP_SOLD = [];
+                BOOKS = [];
+                FROM_TODAY = 0;
+                NOWHERE_COUNT = 0;
+                CANVAS_COUNT = 0;
+                PROOF_COUNT = 0;
+                ADS_COUNT = 0;
+
+                setTimeout(function(){
+                    show_Date_Box(BOOK);
+                },TIME);
+
+                if(CLICKED === false)
+                {
+                    window.status = "CLICKED IS FALSE";
+                    
+                    setTimeout(function(){
+                        call_ContractStat_Total(BOOK);
+                    },TIME); 
+                    setTimeout(function(){
+                        call_FreeStat_Total(BOOK);
+                    },TIME);
+                }
+                else
+                {
+                    switch(SWITCH_STATE)
+                    {
+                        case 0: {//Contract Status
+                                $(".loading_intro").hide();
+                                $("#production_stat_id").show();
+                                $("#cloud_proof_stat_id").hide();
+
+                                CLICKED = false;
+                                call_ContractStat_Total(BOOK);
+                                 break;}
+
+                        case 1: {//Free Status
+                                 $(".loading_intro").hide();
+                                 $("#production_stat_id").hide();
+                                 $("#cloud_proof_stat_id").show();
+
+                                 CLICKED = false;
+                                 call_FreeStat_Total(BOOK);
+
+                                 break;}
+
+                        /*case 3: {//Ads_Per_Graphic_Artist
+                                 $(".loading_intro").hide();
+                                 $("#production_stat_id").hide();
+                                 $("#overview_stuff").hide();
+                                 $("#cloud_proof_stat_id").hide();
+                                 $("#renewal_stat_id").hide();
+                                 $("#repframe").show();
+                                 CLICKED = false;
+                                 callJSONP_Ads_Per_Graphic_Artist(BOOK);
+                                 break;}*/
+                         /*case 4: {//Ads_Per_Proofer
+                                  $(".loading_intro").hide();
+                                  $("#production_stat_id").hide();
+                                  $("#overview_stuff").hide();
+                                  $("#cloud_proof_stat_id").hide();
+                                  $("#renewal_stat_id").hide();
+                                  $("#repframe").show();
+                                  CLICKED = false;
+                                  callJSONP_Ads_Per_Proofer(BOOK);
+                                  break;}*/
+
+                        default:{//show loading
+                                $("#production_stat_id").show();
+                                $("#cloud_proof_stat_id").hide();
+                                
+                                 CLICKED = false;
+                                 call_Loading();
+
+                                 break;}
+                    }
+                }
+            }
+            
+            //--- Books ---
+            function call_Books()
+            {
+                var today = new Date();
+                var highDate = new Date();
+                var lowDate = new Date();
+                
+                highDate.setDate( today.getDate() + 730);
+                lowDate.setDate( today.getDate() - 730);
+                
+                var dateStr = lowDate.getFullYear() + ", 01, 01";
+
+                var url = "http://" + SERVER + "/" +
+                        
+                        "select BOOK.book, BOOK.freefile, BOOK.canstart, BOOK.canend, BOOK.artclose, BOOK.date "+
+                        "from book where BOOK.date > DATE("+ dateStr +") order by book";
+
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_Books");
+                document.getElementsByTagName('head')[0].appendChild(script);
+
+            }
+
+            function jsonp_Books(response)
+            {
+                var dataEntry = [];
+                try
+                {  
+                    BOOKS = [];
+                    
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+
+                        BOOKS.push(dataEntry.book);
+                        FREE_TABLE_BOOKS.push(dataEntry.freefile);
+                        console.log("dataEntry.freefile " + dataEntry.freefile);
+ window.status = "looking..." + dataEntry.book + "." + TEMP_BOOK+".";
+                        if(dataEntry.book === TEMP_BOOK)
+                        {
+                            window.status = "found a match";
+                            TEMP_INDEX = i;
+                        }                       
+                        CANSTART_ARR.push(dataEntry.canstart);
+                        CANEND_ARR.push(dataEntry.canend);
+                        ARTCLOSE_ARR.push(dataEntry.artclose);
+                        PUB_DATE_ARR.push(dataEntry.date);
+                        
+
+                        $('#bookcombo').append($('<option/>').attr("value", dataEntry.book).text(dataEntry.book));
+
+                    }
+                    dataEntry = [];
+                                 
+                    GLOBAL_INDEX = TEMP_INDEX;
+                    document.getElementById("bookcombo").selectedIndex = TEMP_INDEX;
+                    
+                    BOOK = BOOKS[TEMP_INDEX];
+                    FREE_TABLE_BOOK = FREE_TABLE_BOOKS[TEMP_INDEX];
+                    
+                    CANSTART_DATE = CANSTART_ARR[TEMP_INDEX];
+                    CANEND_DATE = CANEND_ARR[TEMP_INDEX];
+                    ARTCLOSE_DATE = ARTCLOSE_ARR[TEMP_INDEX];
+                    PUB_DATE_DATE = PUB_DATE_ARR[TEMP_INDEX];
+
+                    setTimeout(function(){
+                        on_Loading_Data();
+                    },TIME);
+                    setTimeout(function(){
+                        show_Date_Box(BOOK);
+                    },TIME);
+                      
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('index2Something bad happened: ' + an_exception);
+                }
+            
+            }
+            
+            /***********************************************
+             * Called from jsonp_Books(response) during the 
+             * initial loading. 
+             **********************************************/
+            function on_Loading_Data()
+            {
+                var url = "http://" + SERVER + "/" +
+                          "select CONTRACT.BOOK, CONTRACT.SALE as REPCODE, " +
+                          "EMPLOYEE.LAST AS REPLASTNAME, EMPLOYEE.FIRST AS " +
+                          "REPFIRSTNAME  FROM CONTRACT, BOOK, EMPLOYEE WHERE "+
+                          "CONTRACT.BOOK = BOOK.BOOK AND EMPLOYEE.SALE = CONTRACT.SALE "+
+                          "AND (!empty(CONTRACT.AA_ACCT) AND !empty(CONTRACT.SUBDATE ) "+
+                          "AND EMPLOYEE.ACTIVE <> 'N') AND CONTRACT.BOOK='" + BOOK + "' "+
+                          "ORDER BY CONTRACT.BOOK, CONTRACT.SALE GROUP BY CONTRACT.BOOK, "+
+                          "CONTRACT.SALE, EMPLOYEE.LAST, EMPLOYEE.FIRST";
+                  
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_on_Loading_Data");
+                document.getElementsByTagName('head')[0].appendChild(script);
+                
+            }
+            
+            function jsonp_on_Loading_Data(response)
+            {   
+                var dataEntry = [];
+                
+                try
+                {
+                    REP_NAME = [];
+                    REP_CODE = [];
+
+                    REP_CODE.push("");
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+
+                        REP_NAME.push(dataEntry.replastname + " - " + dataEntry.repfirstname);
+                        REP_CODE.push(dataEntry.repcode);
+console.log("reps " + dataEntry.repcode);
+                        $('#repcombo').append($('<option/>').attr("value", dataEntry.repfirstname)
+                                .text(dataEntry.repfirstname + " " + dataEntry.replastname));
+                    }
+                    
+                    dataEntry = [];
+
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('index3Something bad happened: ' + an_exception);
+                }
+                
+                //CALL THE REST OF THE LOADING FUNCTIONS
+                setTimeout(function(){
+                    call_ContractStat_Total(BOOK);
+                },TIME);
+                
+            }
+            
+            function call_Reps(book)
+            {
+                var url = "http://" + SERVER + "/" +
+                          "select CONTRACT.BOOK, CONTRACT.SALE as REPCODE, " +
+                          "EMPLOYEE.LAST AS REPLASTNAME, EMPLOYEE.FIRST AS " +
+                          "REPFIRSTNAME  FROM CONTRACT, BOOK, EMPLOYEE WHERE "+
+                          "CONTRACT.BOOK = BOOK.BOOK AND EMPLOYEE.SALE = CONTRACT.SALE "+
+                          "AND (!empty(CONTRACT.AA_ACCT) AND !empty(CONTRACT.SUBDATE ) "+
+                          "AND EMPLOYEE.ACTIVE <> 'N') AND CONTRACT.BOOK='" + BOOK + "' "+
+                          "ORDER BY CONTRACT.BOOK, CONTRACT.SALE GROUP BY CONTRACT.BOOK, "+
+                          "CONTRACT.SALE, EMPLOYEE.LAST, EMPLOYEE.FIRST";
+                  
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_Reps");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+
+            function jsonp_Reps(response)
+            {
+                var dataEntry = [];
+                
+                try
+                {
+                    $('#repcombo').empty();
+                    $('#repcombo').append($('<option/>').attr("value", "ALL").text("All"));
+                    
+                    REP_NAME = [];
+                    REP_CODE = [];
+
+                    REP_CODE.push("");
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+
+                        REP_NAME.push(dataEntry.replastname + " - " + dataEntry.repfirstname);
+                        REP_CODE.push(dataEntry.repcode);
+console.log("reps "+dataEntry.repcode);
+                        $('#repcombo').append($('<option/>').attr("value", dataEntry.repfirstname)
+                                .text(dataEntry.repfirstname + " " + dataEntry.replastname));
+                    }
+                    
+                    dataEntry = [];
+
+                }
+                catch (an_exception) // alert for the users that don't have a javascript console
+                {
+                    alert('index3Something bad happened: ' + an_exception);
+                }
+
+            }
+            
+            ///////////////////////START CONTRACT STAT//////////////////////////
+            /*******************************************************************
+             * All of the Contract Status functions are contained below here.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            
+           
+    
+    
+    
+            /*******************************************************************
+             * call() and jsonp() for Total. Calls other functions in response.
+             ******************************************************************/
+            function call_ContractStat_Total(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count from "+
+                          "contract where book = '"+ book +"'" + userep;
+                          
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_Total");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_Total(response)
+            {
+                CONTRACT_TOTAL = 0;
+                var dataEntry = [];
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        CONTRACT_TOTAL = dataEntry.count;
+                    }
+                    dataEntry = [];
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_ContractStat_Total ' + an_exception);
+                }
+                
+                if(parseInt(CONTRACT_TOTAL) === 0 || isNaN(parseInt(CONTRACT_TOTAL)) || typeof CONTRACT_TOTAL === 'undefined')
+                {
+                    $("#total_contracts_count").html(0);
+                    call_ContractStat_AllZero();
+                }
+                else
+                {
+                    $("#total_contracts_count").html(CONTRACT_TOTAL);
+
+                    setTimeout(function(){
+                        call_ContractStat_UneditedContracts(BOOK);
+                    },TIME);
+                    setTimeout(function(){
+                        call_ContractStat_EditedNotRetired(BOOK);
+                    },TIME);
+                    setTimeout(function(){
+                        call_ContractStat_RetiredContracts(BOOK);
+                    },TIME);
+                    setTimeout(function(){
+                        call_ContractStat_ContractsOnHold(BOOK);
+                    },TIME);
+                    setTimeout(function(){
+                        call_ContractStat_ImportPending(BOOK);
+                    },TIME);
+                    setTimeout(function(){
+                        call_ContractStat_AwaitingVerification(BOOK);
+                    },TIME);
+                    setTimeout(function(){
+                        call_ContractStat_AwaitingConfirmation(BOOK);
+                    },TIME);
+                    setTimeout(function(){
+                        call_ContractStat_AwaitingProof(BOOK);
+                    },TIME);
+                    setTimeout(function(){
+                        call_ContractStat_OrphanedAnchors(BOOK);
+                    },TIME);
+                }
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for UneditedContracts 
+             ******************************************************************/
+            function call_ContractStat_UneditedContracts(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count " +
+                          "from contract where editflag = 0 and book = '" + book + 
+                          "'" + userep;
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_UneditedContracts");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            
+            function jsonp_ContractStat_UneditedContracts(response)
+            {
+                $('#unedited_count').html(0);
+                $('.pie-unedited').data('easyPieChart').update(100);
+                $('span', '.pie-unedited').text(0);
+                
+                UNEDITED_CONTRACTS = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        UNEDITED_CONTRACTS = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((UNEDITED_CONTRACTS/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_UneditedContracts ' + an_exception);
+                }
+
+                $('#unedited_count').html(UNEDITED_CONTRACTS);
+                $('.pie-unedited').data('easyPieChart').update(num);
+                $('span', '.pie-unedited').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for EditedNotRetired 
+             ******************************************************************/
+            function call_ContractStat_EditedNotRetired(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count " +
+                          "from contract where editflag = 1 and book = '" + book + 
+                          "' and empty(CONTRACT.SUBDATE )" + userep;
+
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_EditedNotRetired");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_EditedNotRetired(response)
+            {
+                $('#edited_not_retired_count').html(0);
+                $('.pie-edited-not-retired').data('easyPieChart').update(100);
+                $('span', '.pie-edited-not-retired').text(0);
+                
+                EDITED_NOT_RETIRED = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        EDITED_NOT_RETIRED = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((EDITED_NOT_RETIRED/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_EditedNotRetired ' + an_exception);
+                }
+
+                $('#edited_not_retired_count').html(EDITED_NOT_RETIRED);
+                $('.pie-edited-not-retired').data('easyPieChart').update(num);
+                $('span', '.pie-edited-not-retired').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for RetiredContracts 
+             ******************************************************************/
+            function call_ContractStat_RetiredContracts(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count " +
+                          "from contract where book = '" + book + 
+                          "' and !empty(CONTRACT.SUBDATE )" + userep;
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_RetiredContracts");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_RetiredContracts(response)
+            {
+                $('#retired_count').html(0);
+                $('.pie-retired').data('easyPieChart').update(100);
+                $('span', '.pie-retired').text(0);
+                
+                RETIRED_CONTRACTS = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        RETIRED_CONTRACTS = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((RETIRED_CONTRACTS/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_RetiredContracts ' + an_exception);
+                }
+      
+                $('#retired_count').html(RETIRED_CONTRACTS);
+                $('.pie-retired').data('easyPieChart').update(num);
+                $('span', '.pie-retired').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for ContractsOnHold 
+             ******************************************************************/
+            function call_ContractStat_ContractsOnHold(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count " +
+                          "from contract where hold_flg = 1 and book = '" + book + 
+                          "'" + userep;
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_ContractsOnHold");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_ContractsOnHold(response)
+            {
+                $('#on_hold_count').html(0);
+                $('.pie-on-hold').data('easyPieChart').update(100);
+                $('span', '.pie-on-hold').text(0);
+                
+                CONTRACTS_ON_HOLD = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        CONTRACTS_ON_HOLD = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((CONTRACTS_ON_HOLD/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_ContractsOnHold ' + an_exception);
+                }
+                
+                $('#on_hold_count').html(CONTRACTS_ON_HOLD);
+                $('.pie-on-hold').data('easyPieChart').update(num);
+                $('span', '.pie-on-hold').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for ImportPending 
+             ******************************************************************/
+            function call_ContractStat_ImportPending(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count " +
+                          "from contract where IMP_HOLD = 1 and book = '" + book + 
+                          "'" + userep;
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_ImportPending");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_ImportPending(response)
+            {
+                $('#import_pending_count').html(0);
+                $('.pie-import-pending').data('easyPieChart').update(100);
+                $('span', '.pie-import-pending').text(0);
+                
+                IMPORT_PENDING = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        IMPORT_PENDING = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((IMPORT_PENDING/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_ImportPending ' + an_exception);
+                }
+                
+                
+                
+                $('#import_pending_count').html(IMPORT_PENDING);
+                $('.pie-import-pending').data('easyPieChart').update(num);
+                $('span', '.pie-import-pending').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for AwaitingVerification 
+             ******************************************************************/
+            function call_ContractStat_AwaitingVerification(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count " +
+                          "from contract where REEDIT = 1 and book = '" + book + 
+                          "'" + userep;
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_AwaitingVerification");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_AwaitingVerification(response)
+            {
+                $('#need_verification_count').html(0);
+                $('.pie-awaiting-verification').data('easyPieChart').update(100);
+                $('span', '.pie-awaiting-verification').text(0);
+                
+                AWAITING_VERIFICATION = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        AWAITING_VERIFICATION = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((AWAITING_VERIFICATION/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_AwaitingVerification ' + an_exception);
+                }
+                
+                
+                
+                $('#need_verification_count').html(AWAITING_VERIFICATION);
+                $('.pie-awaiting-verification').data('easyPieChart').update(num);
+                $('span', '.pie-awaiting-verification').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for AwaitingConfirmation  
+             ******************************************************************/
+            function call_ContractStat_AwaitingConfirmation(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count " +
+                          "from contract where FLAG = 1 and book = '" + book + 
+                          "'" + userep;
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_AwaitingConfirmation");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_AwaitingConfirmation(response)
+            {
+                $('#not_confirmed_count').html(0);
+                $('.pie-awaiting-confirmation').data('easyPieChart').update(100);
+                $('span', '.pie-awaiting-confirmation').text(0);
+                
+                AWAITING_CONFIRMATION = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        AWAITING_CONFIRMATION = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((AWAITING_CONFIRMATION/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_AwaitingConfirmation ' + an_exception);
+                }
+
+                $('#not_confirmed_count').html(AWAITING_CONFIRMATION);
+                $('.pie-awaiting-confirmation').data('easyPieChart').update(num);
+                $('span', '.pie-awaiting-confirmation').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for AwaitingProof 
+             ******************************************************************/
+            function call_ContractStat_AwaitingProof(book)
+            { 
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count " +
+                          "from contract where proof = 0 and book = '" + book + 
+                          "'" + userep;
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_AwaitingProof");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_AwaitingProof(response)
+            {
+                $('#need_proof_count').html(0);
+                $('.pie-awaiting-proof').data('easyPieChart').update(100);
+                $('span', '.pie-awaiting-proof').text(0);
+                
+                AWAITING_PROOF = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        AWAITING_PROOF = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((AWAITING_PROOF/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_AwaitingProof ' + an_exception);
+                }
+
+                $('#need_proof_count').html(AWAITING_PROOF);
+                $('.pie-awaiting-proof').data('easyPieChart').update(num);
+                $('span', '.pie-awaiting-proof').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for OrphanedAnchors
+             ******************************************************************/
+            function call_ContractStat_OrphanedAnchors(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = " AND sale = '" + REP_CODE[REP_INDEX] + "'";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "" + userep;
+                
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_ContractStat_OrphanedAnchors");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_ContractStat_OrphanedAnchors(response)
+            {
+                $('#orphan_count').html(0);
+                $('.pie-orphaned-anchors').data('easyPieChart').update(100);
+                $('span', '.pie-orphaned-anchors').text(0);
+                
+                ORPHANED_ANCHORS = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        ORPHANED_ANCHORS = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((ORPHANED_ANCHORS/CONTRACT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_OrphanedAnchors ' + an_exception);
+                }
+                
+                
+                $('#orphan_count').html(ORPHANED_ANCHORS);
+                $('.pie-orphaned-anchors').data('easyPieChart').update(num);
+                $('span', '.pie-orphaned-anchors').text(num);
+            }
+            
+            function call_ContractStat_AllZero()
+            {
+                //////////////////////UNEDITED_CONTRACTS////////////////////////
+                $('#unedited_count').html(0);
+                $('.pie-unedited').data('easyPieChart').update(100);
+                $('span', '.pie-unedited').text(0);
+                
+                $('#unedited_count').html(0);
+                $('.pie-unedited').data('easyPieChart').update(0);
+                $('span', '.pie-unedited').text(0); 
+                
+                ///////////////////////EDITED_NOT_RETIRED///////////////////////
+                $('#edited_not_retired_count').html(0);
+                $('.pie-edited-not-retired').data('easyPieChart').update(100);
+                $('span', '.pie-edited-not-retired').text(0);
+                
+                $('#edited_not_retired_count').html(0);
+                $('.pie-edited-not-retired').data('easyPieChart').update(0);
+                $('span', '.pie-edited-not-retired').text(0);
+                
+                ///////////////////////RETIRED_CONTRACTS////////////////////////
+                $('#retired_count').html(0);
+                $('.pie-retired').data('easyPieChart').update(100);
+                $('span', '.pie-retired').text(0);
+                
+                $('#retired_count').html(0);
+                $('.pie-retired').data('easyPieChart').update(0);
+                $('span', '.pie-retired').text(0);
+                
+                ///////////////////////CONTRACTS_ON_HOLD////////////////////////
+                $('#on_hold_count').html(0);
+                $('.pie-on-hold').data('easyPieChart').update(100);
+                $('span', '.pie-on-hold').text(0);
+                
+                $('#on_hold_count').html(0);
+                $('.pie-on-hold').data('easyPieChart').update(0);
+                $('span', '.pie-on-hold').text(0);
+                
+                ////////////////////////IMPORT_PENDING//////////////////////////
+                $('#import_pending_count').html(0);
+                $('.pie-import-pending').data('easyPieChart').update(100);
+                $('span', '.pie-import-pending').text(0);
+                
+                $('#import_pending_count').html(0);
+                $('.pie-import-pending').data('easyPieChart').update(0);
+                $('span', '.pie-import-pending').text(0);
+                
+                ////////////////////////AWAITING_VERIFICATION///////////////////
+                $('#need_verification_count').html(0);
+                $('.pie-awaiting-verification').data('easyPieChart').update(100);
+                $('span', '.pie-awaiting-verification').text(0);
+                
+                $('#need_verification_count').html(0);
+                $('.pie-awaiting-verification').data('easyPieChart').update(0);
+                $('span', '.pie-awaiting-verification').text(0);
+                
+                ////////////////////////AWAITING_CONFIRMATION///////////////////
+                $('#not_confirmed_count').html(0);
+                $('.pie-awaiting-confirmation').data('easyPieChart').update(100);
+                $('span', '.pie-awaiting-confirmation').text(0);
+                
+                $('#not_confirmed_count').html(0);
+                $('.pie-awaiting-confirmation').data('easyPieChart').update(0);
+                $('span', '.pie-awaiting-confirmation').text(0);
+                
+                ////////////////////////AWAITING_PROOF//////////////////////////
+                $('#need_proof_count').html(0);
+                $('.pie-awaiting-proof').data('easyPieChart').update(100);
+                $('span', '.pie-awaiting-proof').text(0);
+                
+                $('#need_proof_count').html(0);
+                $('.pie-awaiting-proof').data('easyPieChart').update(0);
+                $('span', '.pie-awaiting-proof').text(0);
+                
+                ////////////////////////ORPHANED_ANCHORS////////////////////////
+                $('#orphan_count').html(0);
+                $('.pie-orphaned-anchors').data('easyPieChart').update(100);
+                $('span', '.pie-orphaned-anchors').text(0);
+                
+                $('#orphan_count').html(0);
+                $('.pie-orphaned-anchors').data('easyPieChart').update(0);
+                $('span', '.pie-orphaned-anchors').text(0);
+            }
+            
+            
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * All of the Contract Status functions are contained above here.
+             ******************************************************************/
+            ///////////////////////END CONTRACT STAT////////////////////////////
+            
+/******************************************************************************/           
+////////////////////////////////////////////////////////////////////////////////            
+/******************************************************************************/
+
+            ///////////////////////START FREE STAT//////////////////////////////
+            /*******************************************************************
+             * All of the Free Status functions are contained below here.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            
+            
+            /*******************************************************************
+             *  call() and jsonp() for FreeStat_Total
+             ******************************************************************/
+            function call_FreeStat_Total(book)
+            {
+                
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = "freesale = '" + REP_CODE[REP_INDEX] + "' AND ";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count from "+
+                          FREE_TABLE_BOOK +" where " + userep + "(ftype = 'R' or ftype = 'M')";
+                //alert(url);
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_FreeStat_Total");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_FreeStat_Total(response)
+            {
+                FREESTAT_TOTAL = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        FREESTAT_TOTAL = dataEntry.count;
+                    }
+                    dataEntry = [];
+
+                    if(parseInt(FREESTAT_TOTAL) === 0 || isNaN(parseInt(FREESTAT_TOTAL)) || typeof FREESTAT_TOTAL === 'undefined')  
+                    {
+                        $("#total_free_count").html(0);
+                        call_FreeStat_AllZero();
+                    }
+                    else
+                    {
+                        $("#total_free_count").html(FREESTAT_TOTAL);
+                        
+                        setTimeout(function(){
+                            call_FreeStat_Leads(BOOK);;
+                        },TIME);
+                        setTimeout(function(){
+                            call_FreeStat_Print(BOOK);
+                        },TIME);
+                        setTimeout(function(){
+                            call_FreeStat_Omit(BOOK);
+                        },TIME);
+                        setTimeout(function(){
+                            call_FreeStat_Delete(BOOK);
+                        },TIME);
+                        setTimeout(function(){
+                            call_FreeStat_Review(BOOK);
+                        },TIME);
+                    }
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_FreeStat_Total ' + an_exception);
+                }
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for FreeStat_Leads
+             ******************************************************************/
+            function call_FreeStat_Leads(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = "freesale = '" + REP_CODE[REP_INDEX] + "' AND ";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count from "+
+                          FREE_TABLE_BOOK +" where "+ userep + "action = 'L' and (ftype = 'R' or ftype = 'M')";
+                          
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_FreeStat_Leads");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_FreeStat_Leads(response)
+            {
+                FREESTAT_LEADS = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        FREESTAT_LEADS = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((FREESTAT_LEADS/FREESTAT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_FreeStat_Leads ' + an_exception);
+                }
+                $('#leads_count').html(0);
+                $('.pie-leads').data('easyPieChart').update(100);
+                $('span', '.pie-leads').text(0);
+                
+                $('#leads_count').html(FREESTAT_LEADS);
+                $('.pie-leads').data('easyPieChart').update(num);
+                $('span', '.pie-leads').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for FreeStat_Print
+             ******************************************************************/
+            function call_FreeStat_Print(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = "freesale = '" + REP_CODE[REP_INDEX] + "' AND ";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count from "+
+                          FREE_TABLE_BOOK +" where " + userep + "action = 'P' and (ftype = 'R' or ftype = 'M')";
+                          
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_FreeStat_Print");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_FreeStat_Print(response)
+            {
+                FREESTAT_PRINT = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        FREESTAT_PRINT = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((FREESTAT_PRINT/FREESTAT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_FreeStat_Print ' + an_exception);
+                }
+                $('#print_count').html(0);
+                $('.pie-print').data('easyPieChart').update(100);
+                $('span', '.pie-print').text(0);
+                
+                $('#print_count').html(FREESTAT_PRINT);
+                $('.pie-print').data('easyPieChart').update(num);
+                $('span', '.pie-print').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for FreeStat_Omit
+             ******************************************************************/
+            function call_FreeStat_Omit(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = "freesale = '" + REP_CODE[REP_INDEX] + "' AND ";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count from "+
+                          FREE_TABLE_BOOK +" where "+ userep +"action = 'O' and (ftype = 'R' or ftype = 'M')";
+                          
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_FreeStat_Omit");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_FreeStat_Omit(response)
+            {
+                FREESTAT_OMIT = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        FREESTAT_OMIT = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((FREESTAT_OMIT/FREESTAT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_FreeStat_Omit ' + an_exception);
+                }
+                $('#omit_count').html(0);
+                $('.pie-omit').data('easyPieChart').update(100);
+                $('span', '.pie-omit').text(0);
+                
+                $('#omit_count').html(FREESTAT_OMIT);
+                $('.pie-omit').data('easyPieChart').update(num);
+                $('span', '.pie-omit').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for FreeStat_Delete
+             ******************************************************************/
+            function call_FreeStat_Delete(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = "freesale = '" + REP_CODE[REP_INDEX] + "' AND ";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count from "+
+                          FREE_TABLE_BOOK +" where "+ userep +"action = 'D' and (ftype = 'R' or ftype = 'M')";
+                          
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_FreeStat_Delete");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_FreeStat_Delete(response)
+            {
+                FREESTAT_DELETE = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        FREESTAT_DELETE = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((FREESTAT_DELETE/FREESTAT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_FreeStat_Delete ' + an_exception);
+                }
+                $('#delete_count').html(0);
+                $('.pie-delete').data('easyPieChart').update(100);
+                $('span', '.pie-delete').text(0);
+                
+                $('#delete_count').html(FREESTAT_DELETE);
+                $('.pie-delete').data('easyPieChart').update(num);
+                $('span', '.pie-delete').text(num);
+            }
+            
+            /*******************************************************************
+             *  call() and jsonp() for FreeStat_Review
+             ******************************************************************/
+            function call_FreeStat_Review(book)
+            {
+                var userep = "";
+                
+                if (REP_CODE[REP_INDEX] !== "") 
+                {
+                    userep = "freesale = '" + REP_CODE[REP_INDEX] + "' AND ";
+                } else {
+                    userep = "";
+                }
+                
+                var url = "http://" + SERVER + "/" + "select count(*) as count from "+
+                          FREE_TABLE_BOOK +" where " + userep + "action = 'R' and (ftype = 'R' or ftype = 'M')";
+                          
+                var script = document.createElement('script');
+                script.setAttribute('src', url + "?callback=jsonp_FreeStat_Review");
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+            function jsonp_FreeStat_Review(response)
+            {
+                FREESTAT_REVIEW = 0;
+                var dataEntry = [];
+                var num = 0;
+                
+                try
+                {
+                    var len = response.result.length;
+                    for (var i = 0; i < len; i++) 
+                    {
+                        dataEntry = response.result[i];
+                        FREESTAT_REVIEW = dataEntry.count;
+                    }
+                    dataEntry = [];
+                    
+                    num = Math.round((FREESTAT_REVIEW/FREESTAT_TOTAL) * 100);
+                    
+                }
+                catch(an_exception)
+                {
+                    alert('Something bad happened: In jsonp_FreeStat_Review ' + an_exception);
+                }
+                $('#review_count').html(0);
+                $('.pie-review').data('easyPieChart').update(100);
+                $('span', '.pie-review').text(0);
+                
+                $('#review_count').html(FREESTAT_REVIEW);
+                $('.pie-review').data('easyPieChart').update(num);
+                $('span', '.pie-review').text(num);
+            }
+            
+            /*******************************************************************
+             * Short cut to display all zeros if FREESTAT_TOTAL == 0. Early out.
+             ******************************************************************/
+            function call_FreeStat_AllZero()
+            {
+                
+                //////////////////////LEADS//////////////////////
+                $('#leads_count').html(0);
+                $('.pie-leads').data('easyPieChart').update(100);
+                $('span', '.pie-leads').text(0);
+                
+                $('#leads_count').html(0);
+                $('.pie-leads').data('easyPieChart').update(0);
+                $('span', '.pie-leads').text(0);
+                
+                //////////////////////PRINT//////////////////////
+                $('#print_count').html(0);
+                $('.pie-print').data('easyPieChart').update(100);
+                $('span', '.pie-print').text(0);
+                
+                $('#print_count').html(0);
+                $('.pie-print').data('easyPieChart').update(0);
+                $('span', '.pie-print').text(0);
+                
+                //////////////////////OMIT//////////////////////
+                $('#omit_count').html(0);
+                $('.pie-omit').data('easyPieChart').update(100);
+                $('span', '.pie-omit').text(0);
+                
+                $('#omit_count').html(0);
+                $('.pie-omit').data('easyPieChart').update(0);
+                $('span', '.pie-omit').text(0);
+                
+                ///////////////////////DELETE//////////////////
+                $('#delete_count').html(0);
+                $('.pie-delete').data('easyPieChart').update(100);
+                $('span', '.pie-delete').text(0);
+                
+                $('#delete_count').html(0);
+                $('.pie-delete').data('easyPieChart').update(0);
+                $('span', '.pie-delete').text(0);
+                
+                ///////////////////////REVIEW///////////////////
+                $('#review_count').html(0);
+                $('.pie-review').data('easyPieChart').update(100);
+                $('span', '.pie-review').text(0);
+                
+                $('#review_count').html(0);
+                $('.pie-review').data('easyPieChart').update(0);
+                $('span', '.pie-review').text(0);
+            }
+            
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * All of the Free Status functions are contained above here.
+             ******************************************************************/
+            ///////////////////////END FREE STAT////////////////////////////////
+            
+/******************************************************************************/           
+///////////////////////////SIDE BAR FUNCTIONS///////////////////////////////////
+/******************************************************************************/          
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * All of the Side Bar functions are contained below here.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+    
+           /*CANSTART_DATE = "";
+            CANEND_DATE = "";
+            ARTCLOSE_DATE = "";
+            PUB_DATE_DATE = "";*/
+            //$('#canvas-start-date').html("No Date");
+            //$('#canvas-days-remaining').html("N/A");
+            //var fmt_start, fmt_start_day, fmt_start_month, fmt_start_yr;
+            //var fmt_end, fmt_end_day, fmt_end_month, fmt_end_yr;
+            
+            function show_Date_Box(book)
+            {
+                show_Canvas_Dates(book);
+                show_Art_Dates(book);
+            }
+            
+            function show_Canvas_Dates(book)
+            {
+                var canvas_start = CANSTART_DATE;
+                var canvas_end = CANEND_DATE;
+                var days_left = 100;
+            
+                if(canvas_start === '12/30/1899')
+                {
+                    canvas_start = "No Date";
+                }
+                
+                if(canvas_end === '12/30/1899')
+                {
+                    canvas_end = "No Date";
+                }
+
+                if(canvas_start === "No Date" || canvas_end === "No Date" )
+                {
+                    days_left = 0;
+                }
+                else
+                {
+                    var date_start = new Date(canvas_start);
+                    var date_end = new Date(canvas_end);
+                    var date_today = new Date();
+                    
+                    if(date_today < date_end)
+                    {
+                        days_left = getWorkDays(date_today, date_end);
+                    }
+                    else
+                    {
+                        days_left = 0;
+                    }
+                }
+                
+                $('#canvas-start-date').html(canvas_start);
+                $('#canvas-end-date').html(canvas_end);
+                $('#canvas-days-remaining').html(days_left);
+                
+            }
+            
+            function show_Art_Dates(book)
+            {
+                var art_close = ARTCLOSE_DATE;
+                var pub_date = PUB_DATE_DATE;
+                var days_left = 100;
+                
+                if(art_close === '12/30/1899')
+                {
+                    art_close = "No Date";
+                }
+                
+                if(pub_date === '12/30/1899')
+                {
+                    pub_date = "No Date";
+                }
+                
+                if(pub_date === "No Date" || art_close === "No Date" )
+                {
+                    days_left = 0;
+                }
+                else
+                {
+                    var date_start = new Date(art_close);
+                    var date_end = new Date(pub_date);
+                    var date_today = new Date();
+                    
+                    if(date_today < date_end)
+                    {
+                        days_left = getWorkDays(date_today, date_end);
+                    }
+                    else
+                    {
+                        days_left = 0;
+                    }
+                }
+                
+                $('#art-close-date').html(art_close);
+                $('#book-close-date').html(pub_date);
+                $('#production-days-remaining').html(days_left);
+                
+            }
+    
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * Finds the number of work days between two dates excluding weekends.
+             * Preconditions: d1 is the Start date, d2 is the end date. 
+             *                d1 should be <= d2.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            function getWorkDays(d1, d2)
+            {
+
+                var bizDays = 0, dd;
+                
+                while(d1 <= d2)
+                {
+                    dd = d1.getDay();
+                    if( (dd%6) !== 0)
+                    {
+                      bizDays++;
+                    }
+                    d1.setDate( d1.getDate() + 1 );
+                }
+
+                return bizDays;
+            }
+    
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * All of the Side Bar functions are contained above here.
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+    
+   
+/******************************************************************************/           
+///////////////////////////JAVAFX FUNCTIONS/////////////////////////////////////   
+/******************************************************************************/
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * These functions are called from JavaFX to set the server and book
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            
+            function setServerFromJava(server)
+            {
+                SERVER = server;
+            }
+            
+            function setBookFromJava(book)
+            {
+                TEMP_BOOK = book;
+            }
+            
+            ////////////////////////////////////////////////////////////////////
+            /*******************************************************************
+             * These functions are called from JavaFX to get the server and book
+             ******************************************************************/
+            ////////////////////////////////////////////////////////////////////
+            
+            function pass_Server_to_Java()
+            {
+                var strServer = SERVER;
+                
+                return strServer;
+            }
+    
+            function pass_Book_to_Java()
+            {
+                var strBook = BOOK;
+                
+                return strBook.toString();
+            }
+            
+/******************************************************************************/           
+////////////////////////////////////////////////////////////////////////////////            
+/******************************************************************************/
+
+            
+            /* TODO: NOTES FOR ALL DASHBOARDS 8-23-13
+             * 
+             * 'NEW Ads' for ad dash board. If an ad is 
+             * brand new, need a way to alert user to new ad
+             * 
+             * Query Tab on Production Dash. Find out more about it 
+             * next week.
+             * 
+             * Sales Dash, Ad dash. Add a refresh button and timer. 
+             * DONE: for sales dash
+             * 
+             * Restructure Sales Dash if there is time.
+             * 
+             * Make a list of queries from all the dash boards for Kelli.
+             * */
+        </script>
+
+
+    </body>
+</html>
